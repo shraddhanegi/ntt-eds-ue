@@ -125,15 +125,22 @@ function isMagentoGraphqlEndpoint(endpoint) {
   }
 }
 
-function buildMagentoSuggestApiUrl(endpoint, query) {
+function buildMagentoSuggestApiRequest(endpoint, query) {
   const safeEndpoint = toSafeSuggestFetchUrl(endpoint, DEFAULT_SUGGEST_API);
-  if (!safeEndpoint) return '';
+  if (!safeEndpoint) return null;
 
-  const url = new URL(safeEndpoint);
-  url.searchParams.set('query', MAGENTO_AUTOCOMPLETE_QUERY);
-  url.searchParams.set('operationName', 'getAutocompleteResults');
-  url.searchParams.set('variables', JSON.stringify({ inputText: query }));
-  return url.toString();
+  return {
+    url: safeEndpoint,
+    options: {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: MAGENTO_AUTOCOMPLETE_QUERY,
+        operationName: 'getAutocompleteResults',
+        variables: { inputText: query },
+      }),
+    },
+  };
 }
 
 function sanitizeLabel(value) {
@@ -239,12 +246,18 @@ export async function fetchSuggestions(endpoint, query, limit = 10) {
   const safeQuery = sanitizeSearchTerm(query);
   if (!safeQuery) return [];
 
-  const url = isMagentoGraphqlEndpoint(endpoint)
-    ? buildMagentoSuggestApiUrl(endpoint, safeQuery)
-    : buildSuggestApiUrl(endpoint, { q: safeQuery, ...(limit ? { limit } : {}) });
+  const isMagentoGraphql = isMagentoGraphqlEndpoint(endpoint);
+  const graphqlRequest = isMagentoGraphql
+    ? buildMagentoSuggestApiRequest(endpoint, safeQuery)
+    : null;
+  const url = graphqlRequest?.url
+    || buildSuggestApiUrl(endpoint, { q: safeQuery, ...(limit ? { limit } : {}) });
   if (!url) return [];
 
-  const fetchOptions = isExternalUrl(url) ? { credentials: 'omit', mode: 'cors' } : undefined;
+  const fetchOptions = {
+    ...(graphqlRequest?.options || {}),
+    ...(isExternalUrl(url) ? { credentials: 'omit', mode: 'cors' } : {}),
+  };
   const json = await fetchJson(url, fetchOptions);
   return extractItems(json).map(normalizeSearchItem).filter((item) => item.label);
 }
