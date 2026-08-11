@@ -15,6 +15,21 @@
           }
         }
       }
+    },
+    {
+      "title": "WH Quad Alternate Item",
+      "id": "wh-quad-alternate-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "WH Quad Alternate Item",
+              "model": "wh-quad-alternate-item"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [

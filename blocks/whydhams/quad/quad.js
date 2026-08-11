@@ -1,14 +1,27 @@
 import { createOptimizedPicture } from '../../../scripts/aem.js';
 import {
-  createButton, getImageFromCell, readLinkField, readSetting,
+  createButton, getImageFromCell, getItemRows, isModelRow, readLinkField, readSetting,
+  readSplitLink,
 } from '../../../scripts/whydham/wh-common.js';
 
 function readQuadItems(block) {
-  return [...block.children].filter((row) => {
+  return getItemRows(block).filter((row) => {
     const key = row.children[0]?.textContent.trim().toLowerCase();
     return key !== 'heading';
   }).map((row) => {
     const cells = [...row.children];
+
+    // Universal Editor emits image | title | description | ctaText | ctaLink.
+    if (isModelRow(row)) {
+      const title = cells[1]?.textContent.trim() || '';
+      return {
+        image: getImageFromCell(cells[0], title),
+        title,
+        description: cells[2]?.textContent.trim() || '',
+        cta: readSplitLink(cells[3], cells[4]),
+      };
+    }
+
     const imageCell = cells.find((cell) => cell.querySelector('picture, img'));
     const textCells = cells.filter((cell) => cell !== imageCell);
 

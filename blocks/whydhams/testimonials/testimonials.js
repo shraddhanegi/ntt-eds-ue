@@ -1,7 +1,7 @@
-import { readSetting } from '../../../scripts/whydham/wh-common.js';
+import { getItemRows, readSetting } from '../../../scripts/whydham/wh-common.js';
 
 function readSlides(block) {
-  return [...block.children].filter((row) => {
+  return getItemRows(block).filter((row) => {
     const key = row.children[0]?.textContent.trim().toLowerCase();
     return key !== 'heading';
   }).map((row) => {

@@ -15,6 +15,21 @@
           }
         }
       }
+    },
+    {
+      "title": "WH Icon Item",
+      "id": "wh-icon-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "WH Icon Item",
+              "model": "wh-icon-item"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [

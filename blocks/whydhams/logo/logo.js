@@ -1,11 +1,32 @@
 import { createOptimizedPicture } from '../../../scripts/aem.js';
 import { moveInstrumentation } from '../../../scripts/scripts.js';
-import { readKeyValueConfig, readProp, readLinkField } from '../../../scripts/whydham/wh-common.js';
+import {
+  getImageFromCell, readKeyValueConfig, readProp, readLinkField,
+} from '../../../scripts/whydham/wh-common.js';
 
 const ALIASES = {
   logoalt: 'logoAlt',
   homelink: 'homeLink',
 };
+
+/**
+ * Key-value rows pair a label with a value, so they always hold two cells. A
+ * block nested in the header instead renders one cell per field.
+ */
+function hasKeyValueRows(block) {
+  return [...block.children].some((row) => row.children.length >= 2);
+}
+
+/** Reads logoImage | logoAlt | homeLink cells, the nested block shape. */
+function readPositionalFields(block) {
+  const cells = [...block.children];
+  const alt = cells[1]?.textContent.trim() || '';
+  return {
+    image: getImageFromCell(cells[0], alt),
+    logoAlt: alt,
+    homeLink: cells[2]?.querySelector('a[href]')?.getAttribute('href')?.trim() || '',
+  };
+}
 
 function readLogoImage(block) {
   const field = block.querySelector('[data-aue-prop="logoImage"]')
@@ -25,10 +46,11 @@ function readLogoImage(block) {
 export default function decorate(block) {
   if (block.querySelector('.wh-logo-link')) return;
 
-  const kv = readKeyValueConfig(block, ALIASES);
-  const image = readLogoImage(block);
+  const positional = hasKeyValueRows(block) ? null : readPositionalFields(block);
+  const kv = positional || readKeyValueConfig(block, ALIASES);
+  const image = positional ? positional.image : readLogoImage(block);
   const homeField = block.querySelector('[data-aue-prop="homeLink"]');
-  const home = homeField
+  const home = homeField && !positional
     ? readLinkField(homeField)
     : { href: kv.homeLink || '/', label: 'Go to homepage' };
 
@@ -45,7 +67,7 @@ export default function decorate(block) {
     moveInstrumentation(block, link);
     link.append(pic);
   } else {
-    link.textContent = readProp(block, 'logoAlt') || 'Wyndham Grand';
+    link.textContent = kv.logoAlt || readProp(block, 'logoAlt') || 'Wyndham Grand';
   }
 
   block.append(link);
