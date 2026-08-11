@@ -4,8 +4,7 @@
     "components": [
       "section",
       "header-section",
-      "content-stack-section",
-      "navigation"
+      "content-stack-section"
     ]
   },
   {

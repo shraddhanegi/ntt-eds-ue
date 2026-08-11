@@ -1315,8 +1315,8 @@
         "name": "suggestApiEndpoint",
         "label": "Autosuggest API Endpoint",
         "valueType": "string",
-        "value": "https://dummyjson.com/products/search",
-        "description": "Product search API. DummyJSON returns product titles from the products array."
+        "value": "https://120642-edsapi-stage.adobeio-static.net/api/v1/web/api-mesh/api-mesh-graphql",
+        "description": "API Mesh GraphQL product search API. Returns product names and URLs for autosuggest."
       },
       {
         "component": "text",

@@ -10,7 +10,7 @@ const DEFAULTS = {
   trendingLimit: 5,
   searchQueryParam: 'q',
   queryIndexSource: '/query-index.json',
-  suggestApiEndpoint: 'https://dummyjson.com/products/search',
+  suggestApiEndpoint: 'https://120642-edsapi-stage.adobeio-static.net/api/v1/web/api-mesh/api-mesh-graphql',
 };
 
 const MAX_LIST_LIMIT = 50;
