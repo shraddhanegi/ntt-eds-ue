@@ -1,7 +1,7 @@
 import { decorateSignInLinks, resolveSignInUrl } from '../../../scripts/whydham/wh-auth.js';
 import { WH_DEFAULTS } from '../../../scripts/whydham/wh-config.js';
 import {
-  createButton, normalizeConfigKey, readLinkField, readSetting,
+  createButton, getImageFromCell, normalizeConfigKey, readLinkField, readSetting,
 } from '../../../scripts/whydham/wh-common.js';
 import { loadWhBlock } from '../../../scripts/whydham/wh-block-loader.js';
 
@@ -51,17 +51,39 @@ function buildNavList(items) {
 }
 
 /** Setting rows share the block with nav rows, so they must not become nav links. */
-const SETTING_KEYS = new Set(['signInUrl', 'bookNowUrl'].map(normalizeConfigKey));
+const SETTING_KEYS = new Set(['signInUrl', 'bookNowUrl', 'phone'].map(normalizeConfigKey));
 
-function readNavItems(block) {
+const LOGO_SELECTOR = '.wh-logo, .logo, [data-aue-component="wh-logo"]';
+
+function isSettingRow(row) {
+  const cells = [...row.children];
+  return cells.length >= 2 && SETTING_KEYS.has(normalizeConfigKey(cells[0].textContent || ''));
+}
+
+/**
+ * Locates the nested logo block. The published pipeline flattens nested blocks
+ * into an unclassed row, so fall back to the row whose first cell is an image.
+ * @param {Element} block header block element
+ * @returns {Element|null} the logo element, or null when none was authored
+ */
+function findLogoRow(block) {
+  const explicit = block.querySelector(LOGO_SELECTOR);
+  if (explicit) return explicit;
+  return [...block.children].find((row) => {
+    if (isSettingRow(row)) return false;
+    return [...row.children].length >= 2 && Boolean(getImageFromCell(row.children[0]));
+  }) || null;
+}
+
+function readNavItems(block, logoRow) {
   const items = [];
   [...block.children].forEach((row) => {
-    // The logo is a nested block, not a navigation row.
-    if (row.matches('.wh-logo, .logo, [data-aue-component="wh-logo"]')) return;
+    if (row === logoRow || row.matches(LOGO_SELECTOR) || isSettingRow(row)) return;
     const cells = [...row.children];
     if (cells.length < 2) return;
     const label = cells[0].textContent.trim();
-    if (!label || SETTING_KEYS.has(normalizeConfigKey(label))) return;
+    // An image in the label cell means a logo-like row rather than a nav entry.
+    if (!label || getImageFromCell(cells[0])) return;
     const link = readLinkField(cells[1]);
     if (!link.href) return;
     items.push({ label, href: link.href });
@@ -69,14 +91,20 @@ function readNavItems(block) {
   return items;
 }
 
+/**
+ * Reads utility links from an explicit tools container. Only drafts author one,
+ * so an absent container yields nothing rather than every anchor in the block.
+ * @param {Element} block header block element
+ * @returns {object[]} utility link data
+ */
 function readUtilityLinks(block) {
-  const tools = block.querySelector('[data-wh-tools]') || block;
-  const links = [...tools.querySelectorAll('a[href]')].map((anchor) => ({
+  const tools = block.querySelector('[data-wh-tools]');
+  if (!tools) return [];
+  return [...tools.querySelectorAll('a[href]')].map((anchor) => ({
     href: anchor.getAttribute('href') || '',
     label: anchor.textContent.trim(),
     signIn: anchor.hasAttribute('data-wh-signin'),
-  }));
-  return links.filter((entry) => entry.href && entry.label);
+  })).filter((entry) => entry.href && entry.label);
 }
 
 /**
@@ -88,10 +116,18 @@ export default async function decorate(block) {
 
   const signInUrl = readSetting(block, 'signInUrl') || WH_DEFAULTS.signInUrl;
   const bookNowUrl = readSetting(block, 'bookNowUrl') || WH_DEFAULTS.bookNowUrl;
+  const phone = readSetting(block, 'phone', WH_DEFAULTS.reservationsPhone);
 
-  const logoBlock = block.querySelector('.wh-logo, .logo, [data-aue-component="wh-logo"]');
-  const navItems = readNavItems(block.querySelector('[data-wh-nav-items]') || block);
+  const logoBlock = findLogoRow(block);
+  const navItems = readNavItems(block.querySelector('[data-wh-nav-items]') || block, logoBlock);
   const utilityLinks = readUtilityLinks(block);
+
+  // Universal Editor and the published pipeline carry settings instead of a
+  // tools container, so build the utility links from them.
+  if (!utilityLinks.length) {
+    utilityLinks.push({ href: signInUrl, label: 'Sign In - Join', signIn: true });
+    if (phone) utilityLinks.push({ href: `tel:${phone.replace(/[^\d+]/g, '')}`, label: phone });
+  }
 
   const inner = document.createElement('div');
   inner.className = 'wh-header-inner';

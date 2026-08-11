@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../../scripts/aem.js';
 import { moveInstrumentation } from '../../../scripts/scripts.js';
 import {
-  getImageFromCell, readKeyValueConfig, readProp, readLinkField,
+  getImageFromCell, readKeyValueConfig, readProp, readLinkField, readSettingCell,
 } from '../../../scripts/whydham/wh-common.js';
 
 const ALIASES = {
@@ -50,9 +50,11 @@ export default function decorate(block) {
   const kv = positional || readKeyValueConfig(block, ALIASES);
   const image = positional ? positional.image : readLogoImage(block);
   const homeField = block.querySelector('[data-aue-prop="homeLink"]');
+  // A relative href reads back as its link text, so prefer the anchor itself.
+  const homeHref = readSettingCell(block, 'homeLink')?.querySelector('a[href]')?.getAttribute('href')?.trim();
   const home = homeField && !positional
     ? readLinkField(homeField)
-    : { href: kv.homeLink || '/', label: 'Go to homepage' };
+    : { href: homeHref || kv.homeLink || '/', label: 'Go to homepage' };
 
   block.replaceChildren();
   block.classList.add('logo');
@@ -63,9 +65,17 @@ export default function decorate(block) {
   link.setAttribute('aria-label', kv.logoAlt || home.label || 'Go to homepage');
 
   if (image?.src) {
-    const pic = createOptimizedPicture(image.src, image.alt, false, [{ width: '200' }]);
     moveInstrumentation(block, link);
-    link.append(pic);
+    // An SVG has no raster variants, so the optimizer's webp sources would 404.
+    if (/\.svg(\?|#|$)/i.test(image.src)) {
+      const img = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt || '';
+      img.loading = 'eager';
+      link.append(img);
+    } else {
+      link.append(createOptimizedPicture(image.src, image.alt, false, [{ width: '200' }]));
+    }
   } else {
     link.textContent = kv.logoAlt || readProp(block, 'logoAlt') || 'Wyndham Grand';
   }

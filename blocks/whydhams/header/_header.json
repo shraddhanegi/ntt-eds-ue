@@ -49,6 +49,13 @@
           "name": "bookNowUrl",
           "label": "Book Now URL",
           "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "phone",
+          "label": "Reservations Phone",
+          "valueType": "string",
+          "description": "Shown next to Sign In. Leave empty to hide it."
         }
       ]
     },
