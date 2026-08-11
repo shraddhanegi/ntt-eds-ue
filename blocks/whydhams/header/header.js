@@ -1,6 +1,8 @@
 import { decorateSignInLinks, resolveSignInUrl } from '../../../scripts/whydham/wh-auth.js';
 import { WH_DEFAULTS } from '../../../scripts/whydham/wh-config.js';
-import { createButton, readFieldText, readLinkField } from '../../../scripts/whydham/wh-common.js';
+import {
+  createButton, normalizeConfigKey, readLinkField, readSetting,
+} from '../../../scripts/whydham/wh-common.js';
 import { loadWhBlock } from '../../../scripts/whydham/wh-block-loader.js';
 
 function buildNavList(items) {
@@ -48,14 +50,20 @@ function buildNavList(items) {
   return nav;
 }
 
+/** Setting rows share the block with nav rows, so they must not become nav links. */
+const SETTING_KEYS = new Set(['signInUrl', 'bookNowUrl'].map(normalizeConfigKey));
+
 function readNavItems(block) {
   const items = [];
   [...block.children].forEach((row) => {
+    // The logo is a nested block, not a navigation row.
+    if (row.matches('.wh-logo, .logo, [data-aue-component="wh-logo"]')) return;
     const cells = [...row.children];
     if (cells.length < 2) return;
     const label = cells[0].textContent.trim();
+    if (!label || SETTING_KEYS.has(normalizeConfigKey(label))) return;
     const link = readLinkField(cells[1]);
-    if (!label || !link.href) return;
+    if (!link.href) return;
     items.push({ label, href: link.href });
   });
   return items;
@@ -78,12 +86,10 @@ function readUtilityLinks(block) {
 export default async function decorate(block) {
   if (block.querySelector('.wh-header-inner')) return;
 
-  const signInUrl = readFieldText(block.querySelector('[data-aue-prop="signInUrl"]'))
-    || WH_DEFAULTS.signInUrl;
-  const bookNowUrl = readFieldText(block.querySelector('[data-aue-prop="bookNowUrl"]'))
-    || WH_DEFAULTS.bookNowUrl;
+  const signInUrl = readSetting(block, 'signInUrl') || WH_DEFAULTS.signInUrl;
+  const bookNowUrl = readSetting(block, 'bookNowUrl') || WH_DEFAULTS.bookNowUrl;
 
-  const logoBlock = block.querySelector('.wh-logo') || block.querySelector('.logo');
+  const logoBlock = block.querySelector('.wh-logo, .logo, [data-aue-component="wh-logo"]');
   const navItems = readNavItems(block.querySelector('[data-wh-nav-items]') || block);
   const utilityLinks = readUtilityLinks(block);
 
@@ -93,6 +99,9 @@ export default async function decorate(block) {
   const logoSlot = document.createElement('div');
   logoSlot.className = 'wh-header-logo logo';
   if (logoBlock) {
+    // Nested blocks carry no block class, so claim it before handing it to the loader.
+    logoBlock.classList.add('wh-logo');
+    logoBlock.dataset.whBlock = 'wh-logo';
     await loadWhBlock(logoBlock);
     logoSlot.append(logoBlock);
   }

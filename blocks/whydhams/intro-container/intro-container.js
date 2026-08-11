@@ -1,6 +1,6 @@
 import { createOptimizedPicture } from '../../../scripts/aem.js';
 import {
-  createButton, getImageFromCell, readLinkField, readSetting,
+  createButton, getImageFromCell, readLinkField, readSetting, readSettingCell, readSplitLink,
 } from '../../../scripts/whydham/wh-common.js';
 
 function readAlignment(block) {
@@ -23,9 +23,11 @@ export default function decorate(block) {
   const copyCell = block.querySelector('[data-wh-copy]')
     || [...block.children].find((row) => row.querySelector('h1, h2, p, a'));
 
-  const imageData = getImageFromCell(imageCell?.querySelector('div') || imageCell);
   const headingText = copyCell?.querySelector('h1, h2')?.textContent?.trim()
     || readSetting(block, 'heading');
+
+  const imageData = getImageFromCell(imageCell?.querySelector('div') || imageCell)
+    || getImageFromCell(readSettingCell(block, 'image'), headingText);
 
   // The last paragraph holding a link is the call to action; the rest is body copy.
   const paragraphs = [...(copyCell?.querySelectorAll('p') || [])];
@@ -34,7 +36,11 @@ export default function decorate(block) {
     .filter((p) => p !== ctaParagraph)
     .map((p) => `<p>${p.innerHTML}</p>`)
     .join('') || readSetting(block, 'description');
-  const cta = readLinkField(ctaParagraph);
+
+  // Universal Editor keeps the label and href in separate ctaText / ctaLink fields.
+  const cta = ctaParagraph
+    ? readLinkField(ctaParagraph)
+    : readSplitLink(readSettingCell(block, 'ctaText'), readSettingCell(block, 'ctaLink'));
 
   const inner = document.createElement('div');
   inner.className = 'wh-intro-container-inner';

@@ -15,6 +15,21 @@
           }
         }
       }
+    },
+    {
+      "title": "WH Testimonial Item",
+      "id": "wh-testimonial-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "WH Testimonial Item",
+              "model": "wh-testimonial-item"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [

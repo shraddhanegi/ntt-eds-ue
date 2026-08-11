@@ -4,7 +4,8 @@
     "components": [
       "section",
       "header-section",
-      "content-stack-section"
+      "content-stack-section",
+      "wh-section"
     ]
   },
   {
@@ -118,7 +119,8 @@
   {
     "id": "wh-header",
     "components": [
-      "wh-logo"
+      "wh-logo",
+      "wh-nav-item"
     ]
   },
   {
@@ -148,6 +150,7 @@
   {
     "id": "wh-section",
     "components": [
+      "wh-header",
       "wh-hero-container",
       "wh-intro-container",
       "wh-icons",

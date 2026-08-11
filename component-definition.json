@@ -740,6 +740,21 @@
           }
         },
         {
+          "title": "WH Nav Item",
+          "id": "wh-nav-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "WH Nav Item",
+                  "model": "wh-nav-item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "WH Hero Container",
           "id": "wh-hero-container",
           "plugins": {
@@ -766,6 +781,21 @@
                   "name": "WH Icons",
                   "model": "wh-icons",
                   "filter": "wh-icons"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "WH Icon Item",
+          "id": "wh-icon-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "WH Icon Item",
+                  "model": "wh-icon-item"
                 }
               }
             }
@@ -820,6 +850,21 @@
           }
         },
         {
+          "title": "WH Quad Alternate Item",
+          "id": "wh-quad-alternate-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "WH Quad Alternate Item",
+                  "model": "wh-quad-alternate-item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "WH Quad",
           "id": "wh-quad",
           "plugins": {
@@ -836,6 +881,21 @@
           }
         },
         {
+          "title": "WH Quad Item",
+          "id": "wh-quad-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "WH Quad Item",
+                  "model": "wh-quad-item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "WH Testimonials",
           "id": "wh-testimonials",
           "plugins": {
@@ -846,6 +906,21 @@
                   "name": "WH Testimonials",
                   "model": "wh-testimonials",
                   "filter": "wh-testimonials"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "WH Testimonial Item",
+          "id": "wh-testimonial-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "WH Testimonial Item",
+                  "model": "wh-testimonial-item"
                 }
               }
             }

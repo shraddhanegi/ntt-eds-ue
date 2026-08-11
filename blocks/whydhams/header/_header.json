@@ -16,6 +16,21 @@
           }
         }
       }
+    },
+    {
+      "title": "WH Nav Item",
+      "id": "wh-nav-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "WH Nav Item",
+              "model": "wh-nav-item"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
@@ -36,12 +51,29 @@
           "valueType": "string"
         }
       ]
+    },
+    {
+      "id": "wh-nav-item",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link",
+          "valueType": "string"
+        }
+      ]
     }
   ],
   "filters": [
     {
       "id": "wh-header",
-      "components": ["wh-logo"]
+      "components": ["wh-logo", "wh-nav-item"]
     }
   ]
 }

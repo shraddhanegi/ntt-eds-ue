@@ -1636,6 +1636,23 @@
     ]
   },
   {
+    "id": "wh-nav-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "wh-hero-container",
     "fields": [
       {
@@ -1711,6 +1728,12 @@
             "value": "right"
           }
         ]
+      },
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "valueType": "string"
       },
       {
         "component": "text",

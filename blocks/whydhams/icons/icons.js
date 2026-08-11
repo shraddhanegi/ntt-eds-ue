@@ -1,9 +1,24 @@
 import { createOptimizedPicture } from '../../../scripts/aem.js';
-import { readFieldText } from '../../../scripts/whydham/wh-common.js';
+import {
+  getImageFromCell, getItemRows, isModelRow, readFieldText,
+} from '../../../scripts/whydham/wh-common.js';
 
 function readIconItems(block) {
-  return [...block.children].map((row) => {
+  return getItemRows(block).map((row) => {
     const cells = [...row.children];
+
+    // Universal Editor emits iconImage | label | link in model field order.
+    if (isModelRow(row)) {
+      const label = cells[1]?.textContent.trim() || '';
+      const image = getImageFromCell(cells[0], label);
+      return {
+        href: cells[2]?.querySelector('a[href]')?.getAttribute('href') || '',
+        label,
+        src: image?.src || '',
+        alt: image?.alt || label,
+      };
+    }
+
     const imageCell = cells.find((cell) => cell.querySelector('picture, img'));
     const textCell = cells.find((cell) => cell !== imageCell && cell.textContent.trim());
     const link = imageCell?.querySelector('a[href]') || textCell?.querySelector('a[href]');

@@ -33,6 +33,12 @@
           ]
         },
         {
+          "component": "reference",
+          "name": "image",
+          "label": "Image",
+          "valueType": "string"
+        },
+        {
           "component": "text",
           "name": "heading",
           "label": "Heading",

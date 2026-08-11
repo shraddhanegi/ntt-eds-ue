@@ -45,6 +45,7 @@
     {
       "id": "wh-section",
       "components": [
+        "wh-header",
         "wh-hero-container",
         "wh-intro-container",
         "wh-icons",
