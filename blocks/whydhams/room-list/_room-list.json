@@ -1,0 +1,126 @@
+{
+  "definitions": [
+    {
+      "title": "WH Room List",
+      "id": "wh-room-list",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "WH Room List",
+              "model": "wh-room-list",
+              "filter": "wh-room-list"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "WH Room Item",
+      "id": "wh-room-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "WH Room Item",
+              "model": "wh-room-item"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wh-room-list",
+      "fields": [
+        {
+          "component": "text",
+          "name": "heading",
+          "label": "Section Heading",
+          "valueType": "string",
+          "value": "Rooms & Rates"
+        }
+      ]
+    },
+    {
+      "id": "wh-room-item",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Room Image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "name",
+          "label": "Room Name",
+          "valueType": "string"
+        },
+        {
+          "component": "textarea",
+          "name": "description",
+          "label": "Description",
+          "valueType": "string"
+        },
+        {
+          "component": "textarea",
+          "name": "features",
+          "label": "Features",
+          "valueType": "string",
+          "description": "Comma separated list, for example 1 King Bed, 425 sq ft, Gulf View."
+        },
+        {
+          "component": "text",
+          "name": "rate",
+          "label": "Rate",
+          "valueType": "string",
+          "description": "Nightly rate as displayed, for example $389."
+        },
+        {
+          "component": "text",
+          "name": "rateNote",
+          "label": "Rate Note",
+          "valueType": "string",
+          "description": "For example: per night, taxes and fees included."
+        },
+        {
+          "component": "text",
+          "name": "points",
+          "label": "Points Per Night",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "roomsLeft",
+          "label": "Rooms Left",
+          "valueType": "string",
+          "description": "Leave empty to hide the scarcity message."
+        },
+        {
+          "component": "text",
+          "name": "bookText",
+          "label": "Book Button Text",
+          "valueType": "string",
+          "value": "Book"
+        },
+        {
+          "component": "text",
+          "name": "bookLink",
+          "label": "Book Link",
+          "valueType": "string",
+          "description": "External booking engine URL for this room."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wh-room-list",
+      "components": ["wh-room-item"]
+    }
+  ]
+}

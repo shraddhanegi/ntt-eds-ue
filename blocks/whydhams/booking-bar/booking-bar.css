@@ -1,0 +1,113 @@
+.wh-booking-bar {
+  margin-top: 1.5rem;
+  padding: 1.5rem 1.25rem;
+  background-color: var(--wh-surface);
+}
+
+.wh-booking-bar .wh-booking-bar-heading {
+  margin: 0 auto 1rem;
+  max-width: var(--wh-shell);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.wh-booking-bar .wh-booking-bar-inner {
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: var(--wh-shell);
+}
+
+.wh-booking-bar .wh-booking-bar-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.wh-booking-bar .wh-booking-bar-label {
+  color: var(--wh-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.wh-booking-bar .wh-booking-bar-control {
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid rgb(40 40 41 / 25%);
+  border-radius: 0;
+  background-color: #fff;
+  color: var(--wh-ink);
+  font-family: var(--wh-body-font);
+  font-size: 0.9rem;
+}
+
+.wh-booking-bar .wh-booking-bar-control:focus-visible {
+  outline: 2px solid var(--wh-brand);
+  outline-offset: 1px;
+}
+
+.wh-booking-bar .wh-booking-bar-points {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wh-booking-bar .wh-booking-bar-points label {
+  color: var(--wh-ink);
+  font-size: 0.85rem;
+}
+
+.wh-booking-bar .wh-booking-bar-points input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--wh-brand);
+}
+
+.wh-booking-bar .wh-booking-bar-submit {
+  align-self: end;
+  min-width: 0;
+  background-color: var(--wh-brand);
+  color: #fff;
+}
+
+.wh-booking-bar .wh-booking-bar-submit:hover {
+  background-color: var(--wh-brand-dark);
+  border-color: var(--wh-brand-dark);
+}
+
+.wh-booking-bar .wh-booking-bar-status {
+  margin: 0.75rem auto 0;
+  max-width: var(--wh-shell);
+  color: #a3231f;
+  font-size: 0.85rem;
+}
+
+.wh-booking-bar .wh-booking-bar-status:empty {
+  display: none;
+}
+
+@media (width >= 600px) {
+  .wh-booking-bar .wh-booking-bar-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  .wh-booking-bar {
+    padding: 1.75rem 2.5rem;
+  }
+
+  .wh-booking-bar .wh-booking-bar-inner {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+    align-items: end;
+    gap: 1rem 1.25rem;
+  }
+
+  .wh-booking-bar .wh-booking-bar-points {
+    grid-column: 1 / -2;
+  }
+}

@@ -10,6 +10,11 @@ export const WH_BLOCK_PATHS = {
   'wh-quad': 'whydhams/quad/quad',
   'wh-quad-alternate': 'whydhams/quad-alternate/quad-alternate',
   'wh-testimonials': 'whydhams/testimonials/testimonials',
+  'wh-breadcrumb': 'whydhams/breadcrumb/breadcrumb',
+  'wh-property-summary': 'whydhams/property-summary/property-summary',
+  'wh-booking-bar': 'whydhams/booking-bar/booking-bar',
+  'wh-rate-notice': 'whydhams/rate-notice/rate-notice',
+  'wh-room-list': 'whydhams/room-list/room-list',
 };
 
 export function isWhBlockName(name) {

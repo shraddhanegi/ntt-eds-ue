@@ -1,0 +1,65 @@
+{
+  "definitions": [
+    {
+      "title": "WH Breadcrumb",
+      "id": "wh-breadcrumb",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "WH Breadcrumb",
+              "model": "wh-breadcrumb",
+              "filter": "wh-breadcrumb"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "WH Breadcrumb Item",
+      "id": "wh-breadcrumb-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "WH Breadcrumb Item",
+              "model": "wh-breadcrumb-item"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wh-breadcrumb",
+      "fields": []
+    },
+    {
+      "id": "wh-breadcrumb-item",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Label",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link",
+          "valueType": "string",
+          "description": "Leave empty on the last crumb, which is the current page."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wh-breadcrumb",
+      "components": ["wh-breadcrumb-item"]
+    }
+  ]
+}

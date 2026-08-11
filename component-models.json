@@ -1618,6 +1618,53 @@
     ]
   },
   {
+    "id": "wh-booking-bar",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "bookingUrl",
+        "label": "Booking Engine URL",
+        "valueType": "string",
+        "description": "Full external booking URL. Its property parameters are kept; the form overrides dates, rooms and guests."
+      },
+      {
+        "component": "text",
+        "name": "submitLabel",
+        "label": "Submit Label",
+        "valueType": "string",
+        "value": "Update"
+      }
+    ]
+  },
+  {
+    "id": "wh-breadcrumb",
+    "fields": []
+  },
+  {
+    "id": "wh-breadcrumb-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "valueType": "string",
+        "description": "Leave empty on the last crumb, which is the current page."
+      }
+    ]
+  },
+  {
     "id": "wh-header",
     "fields": [
       {
@@ -1787,6 +1834,55 @@
     ]
   },
   {
+    "id": "wh-property-summary",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Property Image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "propertyName",
+        "label": "Property Name",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "rating",
+        "label": "Star Rating",
+        "valueType": "string",
+        "description": "Number out of 5, for example 4.5."
+      },
+      {
+        "component": "text",
+        "name": "address",
+        "label": "Address",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "checkInTime",
+        "label": "Check In Time",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "checkOutTime",
+        "label": "Checkout Time",
+        "valueType": "string"
+      },
+      {
+        "component": "textarea",
+        "name": "amenities",
+        "label": "Featured Amenities",
+        "valueType": "string",
+        "description": "Comma separated list, for example Free WiFi, Outdoor Pool, Beachfront."
+      }
+    ]
+  },
+  {
     "id": "wh-quad-alternate",
     "fields": [
       {
@@ -1893,6 +1989,117 @@
         "name": "ctaLink",
         "label": "CTA Link",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-rate-notice",
+    "fields": [
+      {
+        "component": "textarea",
+        "name": "message",
+        "label": "Message",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Variant",
+        "valueType": "string",
+        "value": "info",
+        "options": [
+          {
+            "name": "Info",
+            "value": "info"
+          },
+          {
+            "name": "Warning",
+            "value": "warning"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wh-room-list",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Section Heading",
+        "valueType": "string",
+        "value": "Rooms & Rates"
+      }
+    ]
+  },
+  {
+    "id": "wh-room-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Room Image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Room Name",
+        "valueType": "string"
+      },
+      {
+        "component": "textarea",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "textarea",
+        "name": "features",
+        "label": "Features",
+        "valueType": "string",
+        "description": "Comma separated list, for example 1 King Bed, 425 sq ft, Gulf View."
+      },
+      {
+        "component": "text",
+        "name": "rate",
+        "label": "Rate",
+        "valueType": "string",
+        "description": "Nightly rate as displayed, for example $389."
+      },
+      {
+        "component": "text",
+        "name": "rateNote",
+        "label": "Rate Note",
+        "valueType": "string",
+        "description": "For example: per night, taxes and fees included."
+      },
+      {
+        "component": "text",
+        "name": "points",
+        "label": "Points Per Night",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "roomsLeft",
+        "label": "Rooms Left",
+        "valueType": "string",
+        "description": "Leave empty to hide the scarcity message."
+      },
+      {
+        "component": "text",
+        "name": "bookText",
+        "label": "Book Button Text",
+        "valueType": "string",
+        "value": "Book"
+      },
+      {
+        "component": "text",
+        "name": "bookLink",
+        "label": "Book Link",
+        "valueType": "string",
+        "description": "External booking engine URL for this room."
       }
     ]
   },

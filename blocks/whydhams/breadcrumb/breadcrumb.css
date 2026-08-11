@@ -1,0 +1,55 @@
+.wh-breadcrumb {
+  padding: 1rem 1.25rem 0;
+}
+
+.wh-breadcrumb .wh-breadcrumb-nav {
+  margin: 0 auto;
+  max-width: var(--wh-shell);
+}
+
+.wh-breadcrumb .wh-breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.wh-breadcrumb .wh-breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--wh-muted);
+}
+
+.wh-breadcrumb .wh-breadcrumb-item + .wh-breadcrumb-item::before {
+  content: "/";
+  color: rgb(40 40 41 / 40%);
+}
+
+.wh-breadcrumb .wh-breadcrumb-item a {
+  color: var(--wh-brand);
+  text-decoration: none;
+}
+
+.wh-breadcrumb .wh-breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.wh-breadcrumb .wh-breadcrumb-item [aria-current="page"] {
+  color: var(--wh-ink);
+  font-weight: 600;
+}
+
+@media (width >= 900px) {
+  .wh-breadcrumb {
+    padding: 1.5rem 2.5rem 0;
+  }
+
+  .wh-breadcrumb .wh-breadcrumb-list {
+    font-size: 0.85rem;
+  }
+}

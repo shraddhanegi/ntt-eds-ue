@@ -117,6 +117,12 @@
     ]
   },
   {
+    "id": "wh-breadcrumb",
+    "components": [
+      "wh-breadcrumb-item"
+    ]
+  },
+  {
     "id": "wh-header",
     "components": [
       "wh-logo",
@@ -142,6 +148,12 @@
     ]
   },
   {
+    "id": "wh-room-list",
+    "components": [
+      "wh-room-item"
+    ]
+  },
+  {
     "id": "wh-testimonials",
     "components": [
       "wh-testimonial-item"
@@ -157,6 +169,11 @@
       "wh-quad",
       "wh-quad-alternate",
       "wh-testimonials",
+      "wh-breadcrumb",
+      "wh-property-summary",
+      "wh-booking-bar",
+      "wh-rate-notice",
+      "wh-room-list",
       "text",
       "image",
       "button"

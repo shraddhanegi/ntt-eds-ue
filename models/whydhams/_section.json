@@ -52,6 +52,11 @@
         "wh-quad",
         "wh-quad-alternate",
         "wh-testimonials",
+        "wh-breadcrumb",
+        "wh-property-summary",
+        "wh-booking-bar",
+        "wh-rate-notice",
+        "wh-room-list",
         "text",
         "image",
         "button"
