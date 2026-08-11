@@ -3,8 +3,18 @@ import fetchJson from './fetch-json.js';
 const MAX_SEARCH_TERM_LENGTH = 200;
 const MAX_LABEL_LENGTH = 500;
 const SAFE_QUERY_PARAM_PATTERN = /^[a-z][a-z0-9_-]*$/i;
-const DEFAULT_SUGGEST_API = 'https://dummyjson.com/products/search';
-const ALLOWED_EXTERNAL_ORIGINS = new Set(['https://dummyjson.com']);
+const DEFAULT_SUGGEST_API = 'https://120642-edsapi-stage.adobeio-static.net/api/v1/web/api-mesh/api-mesh-graphql';
+const ALLOWED_EXTERNAL_ORIGINS = new Set(['https://120642-edsapi-stage.adobeio-static.net']);
+const MAGENTO_AUTOCOMPLETE_QUERY = `query getAutocompleteResults($inputText: String!) {
+  products(search: $inputText, currentPage: 1, pageSize: 3) {
+    items {
+      name
+      url_key
+      url_suffix
+      small_image { url }
+    }
+  }
+}`;
 
 /**
  * Validates and normalizes a URL search parameter name.
@@ -106,6 +116,26 @@ function buildSuggestApiUrl(endpoint, params = {}) {
   return url.toString();
 }
 
+function isMagentoGraphqlEndpoint(endpoint) {
+  try {
+    const { pathname } = new URL(endpoint);
+    return pathname.endsWith('/graphql') || pathname.endsWith('/api-mesh-graphql');
+  } catch {
+    return false;
+  }
+}
+
+function buildMagentoSuggestApiUrl(endpoint, query) {
+  const safeEndpoint = toSafeSuggestFetchUrl(endpoint, DEFAULT_SUGGEST_API);
+  if (!safeEndpoint) return '';
+
+  const url = new URL(safeEndpoint);
+  url.searchParams.set('query', MAGENTO_AUTOCOMPLETE_QUERY);
+  url.searchParams.set('operationName', 'getAutocompleteResults');
+  url.searchParams.set('variables', JSON.stringify({ inputText: query }));
+  return url.toString();
+}
+
 function sanitizeLabel(value) {
   return sanitizeSearchTerm(value, MAX_LABEL_LENGTH);
 }
@@ -153,7 +183,10 @@ export function normalizeSearchItem(item) {
     item.label || item.title || item.text || item.name || item.query || '',
   );
   const value = sanitizeLabel(item.value || item.query || label);
-  const path = toSafeSameOriginPath(item.path || item.url || item.href || item.link || '');
+  const productPath = item.url_key ? `/${item.url_key}${item.url_suffix || ''}` : '';
+  const path = toSafeSameOriginPath(
+    item.path || item.url || item.href || item.link || productPath,
+  );
   const meta = sanitizeLabel(item.category || item.brand || '');
 
   return {
@@ -174,6 +207,7 @@ export function extractItems(json) {
   if (Array.isArray(json.results)) return json.results;
   if (Array.isArray(json.items)) return json.items;
   if (Array.isArray(json.suggestions)) return json.suggestions;
+  if (Array.isArray(json.data?.products?.items)) return json.data.products.items;
   return [];
 }
 
@@ -195,7 +229,7 @@ export async function fetchTrendingItems(endpoint, limit = 5) {
 }
 
 /**
- * Fetches autosuggest items for a query (supports DummyJSON product titles).
+ * Fetches autosuggest items for a query (supports Magento GraphQL and JSON APIs).
  * @param {string} endpoint suggest API URL
  * @param {string} query user search query
  * @param {number} [limit] optional max items
@@ -205,10 +239,9 @@ export async function fetchSuggestions(endpoint, query, limit = 10) {
   const safeQuery = sanitizeSearchTerm(query);
   if (!safeQuery) return [];
 
-  const params = { q: safeQuery };
-  if (limit) params.limit = limit;
-
-  const url = buildSuggestApiUrl(endpoint, params);
+  const url = isMagentoGraphqlEndpoint(endpoint)
+    ? buildMagentoSuggestApiUrl(endpoint, safeQuery)
+    : buildSuggestApiUrl(endpoint, { q: safeQuery, ...(limit ? { limit } : {}) });
   if (!url) return [];
 
   const fetchOptions = isExternalUrl(url) ? { credentials: 'omit', mode: 'cors' } : undefined;
