@@ -16,6 +16,9 @@
             { "name": "graphqlProxyEndpoint", "selector": "div>div>p" },
             { "name": "graphqlApiKey", "selector": "div>div>p" },
             { "name": "pageSize", "selector": "div>div>p" },
+            { "name": "minPrice", "selector": "div>div>p" },
+            { "name": "maxPrice", "selector": "div>div>p" },
+            { "name": "categoryId", "selector": "div>div>p" },
             { "name": "mockApiEndpoint", "selector": "div>div>p" },
             { "name": "productDetailPageUrl", "selector": "div>div>a" }
           ]
@@ -67,6 +70,24 @@
           "label": "Products to Display",
           "valueType": "number",
           "value": 12
+        },
+        {
+          "component": "number",
+          "name": "minPrice",
+          "label": "Default Min Price",
+          "valueType": "number"
+        },
+        {
+          "component": "number",
+          "name": "maxPrice",
+          "label": "Default Max Price",
+          "valueType": "number"
+        },
+        {
+          "component": "text",
+          "name": "categoryId",
+          "label": "Category ID",
+          "valueType": "string"
         },
         {
           "component": "text",

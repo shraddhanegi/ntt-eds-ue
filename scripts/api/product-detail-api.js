@@ -42,6 +42,11 @@ function sanitizeText(value, maxLength = 500) {
 function sanitizeUrl(value) {
   const candidate = sanitizeText(value, 2000);
   if (!candidate) return '';
+
+  if (candidate.startsWith('/') && !candidate.startsWith('//')) {
+    return candidate;
+  }
+
   try {
     const url = new URL(candidate);
     if (!['http:', 'https:'].includes(url.protocol)) return '';

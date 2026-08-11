@@ -1,75 +1,173 @@
 {
   "data": {
     "products": {
-      "total_count": 4,
+      "total_count": 10,
+      "aggregations": [
+        {
+          "attribute_code": "category_id",
+          "label": "Category",
+          "count": 10,
+          "options": [
+            { "label": "Tops", "value": "21", "count": 6 },
+            { "label": "Hoodies & Sweatshirts", "value": "23", "count": 3 },
+            { "label": "Bottoms", "value": "24", "count": 1 }
+          ]
+        },
+        {
+          "attribute_code": "price",
+          "label": "Price",
+          "count": 10,
+          "options": [
+            { "label": "$0.00 - $29.99", "value": "0_30", "count": 3 },
+            { "label": "$30.00 - $59.99", "value": "30_60", "count": 5 },
+            { "label": "$60.00 - $99.99", "value": "60_100", "count": 2 }
+          ]
+        },
+        {
+          "attribute_code": "color",
+          "label": "Color",
+          "count": 10,
+          "options": [
+            { "label": "Blue", "value": "50", "count": 3 },
+            { "label": "Orange", "value": "56", "count": 3 },
+            { "label": "Purple", "value": "58", "count": 2 },
+            { "label": "Black", "value": "52", "count": 1 },
+            { "label": "Green", "value": "53", "count": 1 }
+          ]
+        },
+        {
+          "attribute_code": "size",
+          "label": "Size",
+          "count": 10,
+          "options": [
+            { "label": "XS", "value": "166", "count": 1 },
+            { "label": "S", "value": "167", "count": 2 },
+            { "label": "M", "value": "168", "count": 4 },
+            { "label": "L", "value": "169", "count": 2 },
+            { "label": "XL", "value": "170", "count": 1 }
+          ]
+        }
+      ],
       "items": [
         {
           "id": 1,
           "name": "Radiant Tee",
           "sku": "WS12",
           "url_key": "radiant-tee",
-          "price_range": {
-            "minimum_price": {
-              "final_price": {
-                "value": 22,
-                "currency": "USD"
-              }
-            }
-          },
-          "small_image": {
-            "url": "/images/spotlight/cloud.jpg"
-          }
+          "brand": { "label": "Venia" },
+          "category_id": "21",
+          "color": "50",
+          "size": "167",
+          "price_range": { "minimum_price": { "final_price": { "value": 22, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/w/s/ws12-blue_main.jpg" }
         },
         {
           "id": 2,
           "name": "Breathe-Easy Tank",
           "sku": "WT09",
           "url_key": "breathe-easy-tank",
-          "price_range": {
-            "minimum_price": {
-              "final_price": {
-                "value": 34,
-                "currency": "USD"
-              }
-            }
-          },
-          "small_image": {
-            "url": "/images/spotlight/ai.jpg"
-          }
+          "brand": { "label": "Artemis" },
+          "category_id": "21",
+          "color": "56",
+          "size": "168",
+          "price_range": { "minimum_price": { "final_price": { "value": 34, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/w/t/wt09-white_main.jpg" }
         },
         {
           "id": 3,
           "name": "Argus All-Weather Tank",
           "sku": "MT07",
           "url_key": "argus-all-weather-tank",
-          "price_range": {
-            "minimum_price": {
-              "final_price": {
-                "value": 22,
-                "currency": "USD"
-              }
-            }
-          },
-          "small_image": {
-            "url": "/images/spotlight/networking.jpg"
-          }
+          "brand": { "label": "Venia" },
+          "category_id": "21",
+          "color": "50",
+          "size": "169",
+          "price_range": { "minimum_price": { "final_price": { "value": 22, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/m/t/mt07-orange_main.jpg" }
         },
         {
           "id": 4,
           "name": "Hero Hoodie",
           "sku": "MH07",
           "url_key": "hero-hoodie",
-          "price_range": {
-            "minimum_price": {
-              "final_price": {
-                "value": 54,
-                "currency": "USD"
-              }
-            }
-          },
-          "small_image": {
-            "url": "/images/spotlight/cloud.jpg"
-          }
+          "brand": { "label": "Zephyr" },
+          "category_id": "23",
+          "color": "58",
+          "size": "168",
+          "price_range": { "minimum_price": { "final_price": { "value": 54, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/m/h/mh07-gray_main.jpg" }
+        },
+        {
+          "id": 5,
+          "name": "Strike Endurance Tee",
+          "sku": "WS08",
+          "url_key": "strike-endurance-tee",
+          "brand": { "label": "Venia" },
+          "category_id": "21",
+          "color": "58",
+          "size": "167",
+          "price_range": { "minimum_price": { "final_price": { "value": 39, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/w/s/ws08-purple_main.jpg" }
+        },
+        {
+          "id": 6,
+          "name": "Erica Evercool Sports Bra",
+          "sku": "WB01",
+          "url_key": "erica-evercool-sports-bra",
+          "brand": { "label": "Artemis" },
+          "category_id": "21",
+          "color": "56",
+          "size": "166",
+          "price_range": { "minimum_price": { "final_price": { "value": 39, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/w/b/wb01-blue_main.jpg" }
+        },
+        {
+          "id": 7,
+          "name": "Primo Endurance Tank",
+          "sku": "MT06",
+          "url_key": "primo-endurance-tank",
+          "brand": { "label": "Venia" },
+          "category_id": "21",
+          "color": "50",
+          "size": "168",
+          "price_range": { "minimum_price": { "final_price": { "value": 29, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/m/t/mt06-gray_main.jpg" }
+        },
+        {
+          "id": 8,
+          "name": "Marco Lightweight Active Hoodie",
+          "sku": "MH09",
+          "url_key": "marco-lightweight-active-hoodie",
+          "brand": { "label": "Zephyr" },
+          "category_id": "23",
+          "color": "52",
+          "size": "169",
+          "price_range": { "minimum_price": { "final_price": { "value": 74, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/m/h/mh09-white_main.jpg" }
+        },
+        {
+          "id": 9,
+          "name": "Chaz Kangeroo Hoodie",
+          "sku": "MH01",
+          "url_key": "chaz-kangeroo-hoodie",
+          "brand": { "label": "Venia" },
+          "category_id": "23",
+          "color": "56",
+          "size": "170",
+          "price_range": { "minimum_price": { "final_price": { "value": 52, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/m/h/mh01-gray_main.jpg" }
+        },
+        {
+          "id": 10,
+          "name": "Beaumont Summit Kit",
+          "sku": "MJ01",
+          "url_key": "beaumont-summit-kit",
+          "brand": { "label": "Artemis" },
+          "category_id": "24",
+          "color": "53",
+          "size": "168",
+          "price_range": { "minimum_price": { "final_price": { "value": 42, "currency": "USD" } } },
+          "small_image": { "url": "https://venia.magento.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/m/j/mj01-black_main.jpg" }
         }
       ]
     }

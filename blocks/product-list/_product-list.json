@@ -64,7 +64,28 @@
           "name": "pageSize",
           "label": "Products to Display",
           "valueType": "number",
-          "value": 12
+          "value": 10
+        },
+        {
+          "component": "number",
+          "name": "minPrice",
+          "label": "Default Min Price",
+          "valueType": "number",
+          "description": "Optional initial minimum price filter sent to Venia GraphQL (price.from)."
+        },
+        {
+          "component": "number",
+          "name": "maxPrice",
+          "label": "Default Max Price",
+          "valueType": "number",
+          "description": "Optional initial maximum price filter sent to Venia GraphQL (price.to)."
+        },
+        {
+          "component": "text",
+          "name": "categoryId",
+          "label": "Category ID",
+          "valueType": "string",
+          "description": "Optional Venia category ID scope (category_id.eq) for the product listing and filter aggregations."
         },
         {
           "component": "text",

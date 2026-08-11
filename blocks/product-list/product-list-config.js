@@ -22,7 +22,10 @@ export const DEFAULTS = {
   graphqlEndpoint: buildDefaultGraphqlEndpoint(DEFAULT_MESH_ID),
   graphqlProxyEndpoint: DEFAULT_APP_BUILDER_GRAPHQL_PROXY,
   graphqlApiKey: '',
-  pageSize: 12,
+  pageSize: 10,
+  minPrice: '',
+  maxPrice: '',
+  categoryId: '',
   mockApiEndpoint: '/drafts/mock-product-list.json',
   productDetailPageUrl: '',
 };
@@ -34,6 +37,9 @@ const CONFIG_KEY_ALIASES = {
   graphqlproxyendpoint: 'graphqlProxyEndpoint',
   graphqlapikey: 'graphqlApiKey',
   pagesize: 'pageSize',
+  minprice: 'minPrice',
+  maxprice: 'maxPrice',
+  categoryid: 'categoryId',
   mockapiendpoint: 'mockApiEndpoint',
   productdetailpageurl: 'productDetailPageUrl',
 };
@@ -76,6 +82,14 @@ function parsePageSize(value, fallback) {
   return Math.min(parsed, 48);
 }
 
+function parseOptionalPrice(value) {
+  const candidate = String(value ?? '').trim();
+  if (!candidate) return '';
+  const amount = Number(candidate);
+  if (!Number.isFinite(amount) || amount < 0) return '';
+  return String(amount);
+}
+
 /**
  * Reads authored product list block configuration.
  * @param {Element} block product list block element
@@ -114,6 +128,19 @@ export default function readProductListConfig(block) {
       || keyValueConfig.graphqlApiKey
       || DEFAULTS.graphqlApiKey,
     pageSize,
+    minPrice: parseOptionalPrice(
+      readFieldText(block.querySelector('[data-aue-prop="minPrice"]'))
+        || keyValueConfig.minPrice
+        || DEFAULTS.minPrice,
+    ),
+    maxPrice: parseOptionalPrice(
+      readFieldText(block.querySelector('[data-aue-prop="maxPrice"]'))
+        || keyValueConfig.maxPrice
+        || DEFAULTS.maxPrice,
+    ),
+    categoryId: readFieldText(block.querySelector('[data-aue-prop="categoryId"]'))
+      || keyValueConfig.categoryId
+      || DEFAULTS.categoryId,
     mockApiEndpoint: readFieldText(block.querySelector('[data-aue-prop="mockApiEndpoint"]'))
       || keyValueConfig.mockApiEndpoint
       || DEFAULTS.mockApiEndpoint,

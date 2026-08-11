@@ -553,6 +553,18 @@
                   "selector": "div>div>p"
                 },
                 {
+                  "name": "minPrice",
+                  "selector": "div>div>p"
+                },
+                {
+                  "name": "maxPrice",
+                  "selector": "div>div>p"
+                },
+                {
+                  "name": "categoryId",
+                  "selector": "div>div>p"
+                },
+                {
                   "name": "mockApiEndpoint",
                   "selector": "div>div>p"
                 },
