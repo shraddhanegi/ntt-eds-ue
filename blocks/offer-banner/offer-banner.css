@@ -1,0 +1,235 @@
+.offer-banner-container .offer-banner-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.offer-banner {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.offer-banner-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.offer-banner-inner {
+  --offer-banner-bg: #c8e6c9;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 220px;
+  overflow: hidden;
+  border: 1px solid #81c784;
+  border-radius: 4px;
+  background-color: var(--offer-banner-bg);
+  box-shadow: 0 2px 5px rgb(15 17 17 / 15%);
+  box-sizing: border-box;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.offer-banner-inner {
+  cursor: pointer;
+}
+
+a.offer-banner-inner:hover,
+a.offer-banner-inner:focus-visible {
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgb(15 17 17 / 20%);
+}
+
+a.offer-banner-inner:focus-visible {
+  outline: 3px solid var(--link-color, #0072ce);
+  outline-offset: 2px;
+}
+
+.offer-banner-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100%;
+  padding: 24px 28px;
+  text-align: left;
+}
+
+.offer-banner-title {
+  display: inline-flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-color, #0f1111);
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.offer-banner-title-line {
+  display: block;
+  font-size: var(--heading-font-size-m, 1.75rem);
+}
+
+.offer-banner-subtitle {
+  font-size: var(--body-font-size-m, 1.125rem);
+  font-weight: 600;
+}
+
+.offer-banner-media {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-height: 240px;
+  padding: 16px 16px 0;
+  background-color: var(--offer-banner-bg, #c8e6c9);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.offer-banner-media picture {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.offer-banner-media img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.offer-banner-description-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: auto;
+  padding: 12px 20px;
+  border: 1px solid var(--ntt-border, #d9e2ec);
+  border-radius: 4px;
+  background-color: var(--background-color, #fff);
+  box-shadow: 0 2px 5px rgb(15 17 17 / 10%);
+  box-sizing: border-box;
+}
+
+.offer-banner-description {
+  margin: 0;
+  max-width: 100%;
+  color: var(--text-color, #1a1a1a);
+  font-size: var(--body-font-size-xs, 0.875rem);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.offer-banner-description-link {
+  color: var(--link-color, #007185);
+  font-size: var(--body-font-size-xs, 0.875rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+}
+
+.offer-banner-description-link:hover,
+.offer-banner-description-link:focus-visible {
+  color: var(--link-hover-color, #c7511f);
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  .offer-banner-inner {
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 280px;
+  }
+
+  .offer-banner-content {
+    flex: 1 1 40%;
+    padding: 32px 36px;
+  }
+
+  .offer-banner-media {
+    flex: 0 0 60%;
+    width: auto;
+    min-height: 280px;
+    padding: 24px 24px 0;
+  }
+
+  .offer-banner-media img {
+    max-height: 100%;
+  }
+
+  .offer-banner-title-line {
+    font-size: var(--heading-font-size-l, 2.125rem);
+  }
+
+  .offer-banner-subtitle {
+    font-size: var(--heading-font-size-xs, 1.375rem);
+  }
+
+  .offer-banner-description-card {
+    padding: 14px 32px;
+  }
+
+  .offer-banner-description {
+    font-size: var(--body-font-size-s, 1rem);
+  }
+}
+
+@media (width >= 900px) {
+  .offer-banner-inner {
+    min-height: 340px;
+  }
+
+  .offer-banner-content {
+    flex: 1 1 35%;
+    padding: 40px 48px;
+  }
+
+  .offer-banner-media {
+    flex: 0 0 65%;
+    min-height: 340px;
+    padding: 32px 32px 0;
+  }
+
+  .offer-banner-title-line {
+    font-size: var(--heading-font-size-xl, 2.75rem);
+  }
+
+  .offer-banner-subtitle {
+    font-size: var(--heading-font-size-s, 1.5rem);
+  }
+
+  .offer-banner-description-card {
+    padding: 16px 40px;
+  }
+}
+
+@media (width >= 1200px) {
+  .offer-banner-title-line {
+    font-size: var(--heading-font-size-xxl, 3.4375rem);
+  }
+
+  .offer-banner-subtitle {
+    font-size: var(--heading-font-size-m, 1.75rem);
+  }
+}
