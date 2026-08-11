@@ -1,0 +1,100 @@
+{
+  "definitions": [
+    {
+      "title": "Offer Banner",
+      "id": "offer-banner",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Offer Banner",
+              "model": "offer-banner",
+              "titleType": "h2"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "offer-banner",
+      "fields": [
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title Line 1",
+          "valueType": "string",
+          "value": "Kitchen essentials",
+          "validation": {
+            "maxLength": 40,
+            "customErrorMsg": "Title line 1 must be 40 characters or less."
+          }
+        },
+        {
+          "component": "text",
+          "name": "subtitle",
+          "label": "Title Line 2",
+          "valueType": "string",
+          "value": "under $50",
+          "validation": {
+            "maxLength": 40,
+            "customErrorMsg": "Title line 2 must be 40 characters or less."
+          }
+        },
+        {
+          "component": "select",
+          "name": "titleType",
+          "label": "Title Level",
+          "valueType": "string",
+          "value": "h2",
+          "options": [
+            { "name": "H2", "value": "h2" },
+            { "name": "H3", "value": "h3" }
+          ]
+        },
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Banner Image",
+          "valueType": "string",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Image Alt Text",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Banner Link",
+          "valueType": "string"
+        },
+        {
+          "component": "textarea",
+          "name": "description",
+          "label": "Description",
+          "valueType": "string",
+          "value": "You are on amazon.com. You can also shop on Amazon India for millions of products with fast local delivery."
+        },
+        {
+          "component": "aem-content",
+          "name": "descriptionLink",
+          "label": "Description Link",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "descriptionLinkText",
+          "label": "Description Link Text",
+          "valueType": "string",
+          "value": "Click here to go to amazon.in"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
