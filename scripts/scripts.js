@@ -12,6 +12,7 @@ import {
 } from './aem.js';
 import decorateTitlesWithMargin from './title-with-margin.js';
 import decorateContentStackSections, { initContentStackSectionAuthoring } from './content-stack-section.js';
+import { decorateWhBlocks, loadWhBlocks } from './whydham/wh-block-loader.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -123,6 +124,7 @@ export function decorateMain(main) {
   decorateContentStackSections(main);
   initContentStackSectionAuthoring(main);
   decorateTitlesWithMargin(main);
+  decorateWhBlocks(main);
   decorateBlocks(main);
   decorateButtons(main);
 }
@@ -135,10 +137,13 @@ async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
+  const header = doc.querySelector('header');
+  if (header) decorateWhBlocks(header);
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
+    await loadWhBlocks(doc);
   }
 
   try {
@@ -156,10 +161,11 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  loadHeader(doc.querySelector('header'));
+  loadHeader(doc.querySelector('header')).then(() => loadWhBlocks(doc));
 
   const main = doc.querySelector('main');
   await loadSections(main);
+  await loadWhBlocks(doc);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

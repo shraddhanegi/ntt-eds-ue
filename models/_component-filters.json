@@ -18,5 +18,11 @@
   },
   {
     "...": "../blocks/*/_*.json#/filters"
+  },
+  {
+    "...": "../blocks/whydhams/*/_*.json#/filters"
+  },
+  {
+    "...": "./whydhams/_section.json#/filters"
   }
 ]

@@ -1,0 +1,122 @@
+.wh-intro-container {
+  position: relative;
+  background-color: #fff;
+}
+
+.wh-intro-container .wh-intro-container-inner {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--wh-shell);
+  margin: 0 auto;
+  padding: 0 0 3rem;
+}
+
+.wh-intro-container .wh-intro-media {
+  position: relative;
+}
+
+.wh-intro-container .wh-intro-media picture,
+.wh-intro-container .wh-intro-media img {
+  display: block;
+  width: 100%;
+}
+
+.wh-intro-container .wh-intro-media img {
+  height: clamp(260px, 52vw, 420px);
+  object-fit: cover;
+}
+
+.wh-intro-container .wh-intro-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2.5rem 5% 0;
+  background-color: #fff;
+}
+
+.wh-intro-container .wh-intro-heading {
+  position: relative;
+  margin: 0 0 1.75rem;
+  padding-bottom: 22px;
+  color: var(--wh-ink);
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.wh-intro-container .wh-intro-heading span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--wh-brand);
+  font-size: 0.52em;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+}
+
+.wh-intro-container .wh-intro-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 135px;
+  height: 1px;
+  background-color: var(--wh-brand);
+}
+
+.wh-intro-container .wh-intro-description {
+  color: var(--wh-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.wh-intro-container .wh-intro-description p {
+  margin: 0 0 1rem;
+}
+
+.wh-intro-container .wh-intro-copy .wh-btn {
+  margin-top: 0.75rem;
+}
+
+@media (width >= 900px) {
+  .wh-intro-container .wh-intro-container-inner {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    padding: clamp(4rem, 7vw, 7rem) 5%;
+  }
+
+  .wh-intro-container .wh-intro-media {
+    grid-row: 1;
+  }
+
+  .wh-intro-container .wh-intro-media img {
+    height: clamp(420px, 40vw, 600px);
+  }
+
+  /* Copy card overlaps the photo edge, as on the reference site. */
+  .wh-intro-container .wh-intro-copy {
+    z-index: 1;
+    grid-row: 1;
+    padding: clamp(2.5rem, 4vw, 4rem);
+    box-shadow: 0 24px 60px rgb(40 40 41 / 14%);
+  }
+
+  .wh-intro-container .wh-intro-media-left {
+    grid-column: 1 / span 7;
+  }
+
+  .wh-intro-container .wh-intro-copy-right {
+    grid-column: 7 / span 6;
+  }
+
+  .wh-intro-container .wh-intro-media-right {
+    grid-column: 6 / span 7;
+  }
+
+  .wh-intro-container .wh-intro-copy-left {
+    grid-column: 1 / span 6;
+  }
+}

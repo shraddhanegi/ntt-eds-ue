@@ -1512,5 +1512,341 @@
         "value": 0
       }
     ]
+  },
+  {
+    "id": "wh-header",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "signInUrl",
+        "label": "Sign In URL",
+        "valueType": "string",
+        "description": "Wyndham Rewards / Synxis sign-in URL for SSO."
+      },
+      {
+        "component": "aem-content",
+        "name": "bookNowUrl",
+        "label": "Book Now URL",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-hero-container",
+    "fields": [
+      {
+        "component": "text",
+        "name": "headline",
+        "label": "Headline",
+        "valueType": "string",
+        "value": "The Most Stylish Spot Under The Sun"
+      },
+      {
+        "component": "text",
+        "name": "videoUrl",
+        "label": "Hero Video URL",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "posterImage",
+        "label": "Poster / Fallback Image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "videoTitle",
+        "label": "Video Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-icons",
+    "fields": []
+  },
+  {
+    "id": "wh-icon-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "iconImage",
+        "label": "Icon Image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-intro-container",
+    "fields": [
+      {
+        "component": "select",
+        "name": "imageAlignment",
+        "label": "Image Alignment",
+        "valueType": "string",
+        "value": "left",
+        "options": [
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-logo",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "logoImage",
+        "label": "Logo Image",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "logoAlt",
+        "label": "Logo Alt Text",
+        "valueType": "string",
+        "value": "Wyndham Grand Clearwater Beach"
+      },
+      {
+        "component": "aem-content",
+        "name": "homeLink",
+        "label": "Home Link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-quad-alternate",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Section Heading",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-quad-alternate-item",
+    "fields": [
+      {
+        "component": "select",
+        "name": "imageAlignment",
+        "label": "Image Alignment",
+        "valueType": "string",
+        "value": "left",
+        "options": [
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "textarea",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-quad",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Section Heading",
+        "valueType": "string",
+        "value": "Top Reasons"
+      }
+    ]
+  },
+  {
+    "id": "wh-quad-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "textarea",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-testimonials",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Section Heading",
+        "valueType": "string",
+        "value": "Our Guests Say It Best"
+      }
+    ]
+  },
+  {
+    "id": "wh-testimonial-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "eyebrow",
+        "label": "Eyebrow",
+        "valueType": "string"
+      },
+      {
+        "component": "textarea",
+        "name": "quote",
+        "label": "Quote",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "cite",
+        "label": "Attribution",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wh-section",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Section Name"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Hero",
+            "value": "hero-container"
+          },
+          {
+            "name": "Intro",
+            "value": "intro-container"
+          },
+          {
+            "name": "Icons",
+            "value": "icons"
+          },
+          {
+            "name": "Quad",
+            "value": "columns-new"
+          },
+          {
+            "name": "Alternate",
+            "value": "columns-altern"
+          },
+          {
+            "name": "Testimonials",
+            "value": "awards-new"
+          },
+          {
+            "name": "Navy",
+            "value": "navy"
+          }
+        ]
+      }
+    ]
   }
 ]

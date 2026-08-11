@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+body.whydham {
+  --wh-brand: #3d717f;
+  --wh-brand-dark: #2f5963;
+  --wh-brand-soft: #56757e;
+  --wh-gold: #d9b941;
+  --wh-ink: #282829;
+  --wh-muted: rgb(40 40 41 / 72%);
+  --wh-surface: #f6f7f7;
+  --wh-heading-font: montserrat, "Roboto Condensed", roboto-condensed-fallback, sans-serif;
+  --wh-body-font: montserrat, roboto, roboto-fallback, sans-serif;
+  --wh-curve: 0 0 50% 50% / 0 0 6% 6%;
+  --wh-shell: 1500px;
+  --wh-shell-narrow: 1170px;
+
+  color: var(--wh-ink);
+  font-family: var(--wh-body-font);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+body.whydham :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--wh-heading-font);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+/* Sections span the full viewport width; blocks own their inner gutters. */
+body.whydham main > .section {
+  margin: 0;
+}
+
+body.whydham main > .section > div {
+  max-width: none;
+  padding: 0;
+}
+
+body.whydham header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #fff;
+}
+
+/*
+ * Wyndham pages supply their own header and footer blocks. Hide the site-wide
+ * ones when they carry no Wyndham block, which is the case for local drafts.
+ */
+body.whydham > header:not(:has([data-wh-block])),
+body.whydham > footer:not(:has([data-wh-block])) {
+  display: none;
+}
+
+/* Teal underline accent used on headings across Wyndham blocks. */
+body.whydham .wh-accent-underline {
+  position: relative;
+  padding-bottom: 22px;
+}
+
+body.whydham .wh-accent-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 135px;
+  height: 1px;
+  background-color: var(--wh-brand);
+}
+
+body.whydham .wh-accent-underline.is-centered::after {
+  right: 0;
+  margin: 0 auto;
+}
+
+body.whydham .wh-accent-underline.is-white::after {
+  background-color: #fff;
+}
+
+/* Outline pill-less button matching the reference site. */
+body.whydham .wh-btn,
+body.whydham .btn {
+  display: inline-block;
+  min-width: 180px;
+  padding: 0.9rem 1.5rem;
+  border: 2px solid var(--wh-brand);
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--wh-brand);
+  font-family: var(--wh-heading-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+body.whydham .wh-btn:hover,
+body.whydham .btn:hover {
+  background-color: var(--wh-brand);
+  color: #fff;
+}
+
+body.whydham .wh-btn-light {
+  border-color: #fff;
+  color: #fff;
+}
+
+body.whydham .wh-btn-light:hover {
+  background-color: #fff;
+  color: var(--wh-ink);
+}

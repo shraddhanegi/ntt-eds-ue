@@ -1,0 +1,33 @@
+.wh-logo .wh-logo-link {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-family: var(--wh-heading-font);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.wh-logo .wh-logo-link picture,
+.wh-logo .wh-logo-link img {
+  display: block;
+}
+
+.wh-logo .wh-logo-link img {
+  width: auto;
+  height: 30px;
+}
+
+@media (width >= 900px) {
+  .wh-logo .wh-logo-link img {
+    height: 38px;
+  }
+}
+
+@media (width >= 1200px) {
+  .wh-logo .wh-logo-link img {
+    height: 44px;
+  }
+}

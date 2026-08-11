@@ -36,6 +36,9 @@
       "components": [
         {
           "...": "../blocks/*/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/whydhams/*/_*.json#/definitions"
         }
       ]
     }

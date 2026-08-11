@@ -1,0 +1,159 @@
+.wh-quad-alternate {
+  background-color: #fff;
+}
+
+.wh-quad-alternate .wh-quad-alternate-heading {
+  position: relative;
+  max-width: var(--wh-shell-narrow);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 3.75rem) 5% 22px;
+  color: var(--wh-brand);
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.wh-quad-alternate .wh-quad-alternate-heading::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 135px;
+  height: 1px;
+  margin: 0 auto;
+  background-color: var(--wh-brand);
+}
+
+.wh-quad-alternate .wh-quad-alternate-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  max-width: var(--wh-shell-narrow);
+  margin: 0 auto;
+  padding: 2.5rem 5% clamp(3rem, 6vw, 5rem);
+}
+
+.wh-quad-alternate .wh-quad-alternate-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.wh-quad-alternate .wh-quad-alternate-media figure {
+  position: relative;
+  margin: 0;
+}
+
+.wh-quad-alternate .wh-quad-alternate-media picture,
+.wh-quad-alternate .wh-quad-alternate-media img {
+  display: block;
+  width: 100%;
+}
+
+.wh-quad-alternate .wh-quad-alternate-media img {
+  height: clamp(340px, 62vw, 440px);
+  object-fit: cover;
+  transition: transform 0.5s ease-in;
+}
+
+.wh-quad-alternate .wh-quad-alternate-item:hover img {
+  transform: scale(1.04);
+}
+
+.wh-quad-alternate .wh-quad-alternate-media figure::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 0%) 70%);
+}
+
+/* Copy always sits over the lower part of the image. */
+.wh-quad-alternate .wh-quad-alternate-copy {
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 1.75rem;
+
+  /* Scrim tied to the copy layer so text stays legible on bright photos. */
+  background: linear-gradient(0deg, rgb(0 0 0 / 85%) 0%, rgb(0 0 0 / 68%) 68%, rgb(0 0 0 / 0%) 100%);
+  color: #fff;
+  text-shadow: 0 1px 12px rgb(0 0 0 / 55%);
+}
+
+.wh-quad-alternate .wh-align-left .wh-quad-alternate-copy {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.wh-quad-alternate .wh-align-right .wh-quad-alternate-copy {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.wh-quad-alternate .wh-quad-alternate-copy h3 {
+  position: relative;
+  margin: 0 0 0.9rem;
+  padding-bottom: 12px;
+  color: #fff;
+  font-size: clamp(1.25rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.wh-quad-alternate .wh-quad-alternate-copy h3::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 60px;
+  height: 1px;
+  background-color: var(--wh-gold);
+}
+
+.wh-quad-alternate .wh-align-left .wh-quad-alternate-copy h3::before {
+  left: 0;
+}
+
+.wh-quad-alternate .wh-align-right .wh-quad-alternate-copy h3::before {
+  right: 0;
+}
+
+.wh-quad-alternate .wh-quad-alternate-copy p {
+  max-width: 44ch;
+  margin: 0 0 1.25rem;
+  color: rgb(255 255 255 / 92%);
+  line-height: 1.7;
+}
+
+.wh-quad-alternate .wh-quad-alternate-copy .wh-btn {
+  border-color: #fff;
+  color: #fff;
+}
+
+.wh-quad-alternate .wh-quad-alternate-copy .wh-btn:hover {
+  background-color: #fff;
+  color: var(--wh-ink);
+}
+
+@media (width >= 900px) {
+  .wh-quad-alternate .wh-quad-alternate-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wh-quad-alternate .wh-quad-alternate-media img {
+    height: clamp(440px, 42vw, 560px);
+  }
+
+  .wh-quad-alternate .wh-quad-alternate-copy {
+    padding: 5rem 2.5rem 2.5rem;
+  }
+}

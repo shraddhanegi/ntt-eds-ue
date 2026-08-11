@@ -1,0 +1,60 @@
+{
+  "definitions": [
+    {
+      "title": "WH Section",
+      "id": "wh-section",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/section/v1/section",
+            "template": {
+              "model": "wh-section"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wh-section",
+      "fields": [
+        {
+          "component": "text",
+          "name": "name",
+          "label": "Section Name"
+        },
+        {
+          "component": "multiselect",
+          "name": "style",
+          "label": "Style",
+          "options": [
+            { "name": "Hero", "value": "hero-container" },
+            { "name": "Intro", "value": "intro-container" },
+            { "name": "Icons", "value": "icons" },
+            { "name": "Quad", "value": "columns-new" },
+            { "name": "Alternate", "value": "columns-altern" },
+            { "name": "Testimonials", "value": "awards-new" },
+            { "name": "Navy", "value": "navy" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wh-section",
+      "components": [
+        "wh-hero-container",
+        "wh-intro-container",
+        "wh-icons",
+        "wh-quad",
+        "wh-quad-alternate",
+        "wh-testimonials",
+        "text",
+        "image",
+        "button"
+      ]
+    }
+  ]
+}

@@ -22,5 +22,11 @@
   },
   {
     "...": "../blocks/*/_*.json#/models"
+  },
+  {
+    "...": "../blocks/whydhams/*/_*.json#/models"
+  },
+  {
+    "...": "./whydhams/_section.json#/models"
   }
 ]

@@ -113,5 +113,49 @@
     "components": [
       "tile"
     ]
+  },
+  {
+    "id": "wh-header",
+    "components": [
+      "wh-logo"
+    ]
+  },
+  {
+    "id": "wh-icons",
+    "components": [
+      "wh-icon-item"
+    ]
+  },
+  {
+    "id": "wh-quad-alternate",
+    "components": [
+      "wh-quad-alternate-item"
+    ]
+  },
+  {
+    "id": "wh-quad",
+    "components": [
+      "wh-quad-item"
+    ]
+  },
+  {
+    "id": "wh-testimonials",
+    "components": [
+      "wh-testimonial-item"
+    ]
+  },
+  {
+    "id": "wh-section",
+    "components": [
+      "wh-hero-container",
+      "wh-intro-container",
+      "wh-icons",
+      "wh-quad",
+      "wh-quad-alternate",
+      "wh-testimonials",
+      "text",
+      "image",
+      "button"
+    ]
   }
 ]

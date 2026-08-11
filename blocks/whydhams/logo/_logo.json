@@ -1,0 +1,48 @@
+{
+  "definitions": [
+    {
+      "title": "WH Logo",
+      "id": "wh-logo",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "WH Logo",
+              "model": "wh-logo",
+              "key-value": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wh-logo",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "logoImage",
+          "label": "Logo Image",
+          "valueType": "string",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "logoAlt",
+          "label": "Logo Alt Text",
+          "valueType": "string",
+          "value": "Wyndham Grand Clearwater Beach"
+        },
+        {
+          "component": "aem-content",
+          "name": "homeLink",
+          "label": "Home Link",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

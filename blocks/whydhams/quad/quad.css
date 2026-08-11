@@ -1,0 +1,201 @@
+.wh-quad {
+  border-top: 1px solid rgb(40 40 41 / 16%);
+  background-color: #fff;
+}
+
+.wh-quad .wh-quad-heading {
+  position: relative;
+  max-width: var(--wh-shell);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 3.75rem) 5% 22px;
+  color: var(--wh-brand);
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.wh-quad .wh-quad-heading::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 135px;
+  height: 1px;
+  margin: 0 auto;
+  background-color: var(--wh-brand);
+}
+
+.wh-quad .wh-quad-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+  max-width: var(--wh-shell);
+  margin: 0 auto;
+  padding: 2.5rem 5% clamp(3rem, 6vw, 5rem);
+}
+
+.wh-quad .wh-quad-item {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.wh-quad .wh-quad-item figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+.wh-quad .wh-quad-item figure picture,
+.wh-quad .wh-quad-item figure img {
+  display: block;
+  width: 100%;
+}
+
+.wh-quad .wh-quad-item figure img {
+  height: clamp(280px, 56vw, 380px);
+  object-fit: cover;
+  transition: transform 0.5s ease-in;
+}
+
+.wh-quad .wh-quad-item:hover figure img {
+  transform: scale(1.04);
+}
+
+.wh-quad .wh-quad-item figure::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 0%) 100%);
+}
+
+/* The on-image title only appears where the hover overlay is used. */
+.wh-quad .wh-quad-overlay-title {
+  display: none;
+}
+
+.wh-quad .wh-quad-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.5rem 0 0;
+  text-align: center;
+}
+
+.wh-quad .wh-quad-title {
+  position: relative;
+  padding-bottom: 12px;
+  color: var(--wh-ink);
+  font-family: var(--wh-heading-font);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.wh-quad .wh-quad-title::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 40px;
+  height: 1px;
+  margin: 0 auto;
+  background-color: var(--wh-brand);
+}
+
+.wh-quad .wh-quad-copy p {
+  margin: 0;
+  color: var(--wh-muted);
+  line-height: 1.7;
+}
+
+@media (width >= 600px) {
+  .wh-quad .wh-quad-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  .wh-quad .wh-quad-inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .wh-quad .wh-quad-item figure img {
+    height: clamp(420px, 38vw, 560px);
+  }
+
+  .wh-quad .wh-quad-overlay-title {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 30px;
+    left: 0;
+    width: fit-content;
+    max-width: 80%;
+    margin: 0 auto;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: opacity 0.5s ease-in;
+  }
+
+  /* Full-card overlay revealed on hover or keyboard focus. */
+  .wh-quad .wh-quad-copy {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 4rem);
+    background-color: rgb(0 0 0 / 72%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+
+  .wh-quad .wh-quad-item:hover .wh-quad-copy,
+  .wh-quad .wh-quad-item:focus-within .wh-quad-copy {
+    opacity: 1;
+  }
+
+  .wh-quad .wh-quad-item:hover .wh-quad-overlay-title,
+  .wh-quad .wh-quad-item:focus-within .wh-quad-overlay-title {
+    opacity: 0;
+  }
+
+  .wh-quad .wh-quad-title {
+    color: #fff;
+  }
+
+  .wh-quad .wh-quad-title::before {
+    background-color: #fff;
+  }
+
+  .wh-quad .wh-quad-copy p {
+    color: #fff;
+  }
+
+  .wh-quad .wh-quad-copy .wh-btn {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .wh-quad .wh-quad-copy .wh-btn:hover {
+    background-color: #fff;
+    color: var(--wh-ink);
+  }
+}
