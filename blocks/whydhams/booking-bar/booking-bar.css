@@ -67,16 +67,19 @@
   accent-color: var(--wh-brand);
 }
 
-.wh-booking-bar .wh-booking-bar-submit {
+.wh-booking-bar .wh-booking-bar-inner .wh-booking-bar-submit {
   align-self: end;
   min-width: 0;
+  padding: 0.75rem 2rem;
+  border-color: var(--wh-brand);
   background-color: var(--wh-brand);
   color: #fff;
 }
 
-.wh-booking-bar .wh-booking-bar-submit:hover {
-  background-color: var(--wh-brand-dark);
+.wh-booking-bar .wh-booking-bar-inner .wh-booking-bar-submit:hover {
   border-color: var(--wh-brand-dark);
+  background-color: var(--wh-brand-dark);
+  color: #fff;
 }
 
 .wh-booking-bar .wh-booking-bar-status {

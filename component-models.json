@@ -2043,7 +2043,7 @@
       },
       {
         "component": "text",
-        "name": "name",
+        "name": "roomName",
         "label": "Room Name",
         "valueType": "string"
       },

@@ -106,18 +106,23 @@
   margin: 0;
   color: var(--wh-muted);
   font-size: 0.75rem;
+  line-height: 1.4;
+  text-wrap: balance;
 }
 
-.wh-room-list .wh-room-list-book {
+.wh-room-list .wh-room-list-price .wh-room-list-book {
+  width: 100%;
   margin-top: 0.9rem;
-  min-width: 160px;
+  min-width: 0;
+  border-color: var(--wh-brand);
   background-color: var(--wh-brand);
   color: #fff;
 }
 
-.wh-room-list .wh-room-list-book:hover {
-  background-color: var(--wh-brand-dark);
+.wh-room-list .wh-room-list-price .wh-room-list-book:hover {
   border-color: var(--wh-brand-dark);
+  background-color: var(--wh-brand-dark);
+  color: #fff;
 }
 
 .wh-room-list .wh-room-list-empty {
@@ -133,7 +138,7 @@
   }
 
   .wh-room-list .wh-room-list-item {
-    grid-template-columns: minmax(0, 320px) minmax(0, 1fr) minmax(0, 240px);
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr) minmax(0, 280px);
     align-items: stretch;
   }
 

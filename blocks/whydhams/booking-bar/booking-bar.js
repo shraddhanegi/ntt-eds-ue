@@ -143,6 +143,9 @@ export default function decorate(block) {
     search.set('children', children.value);
     search.set('useWRPoints', String(pointsInput.checked));
 
+    // The engine expects literal slashes in its date parameters.
+    target.search = search.toString().replace(/%2F/g, '/');
+
     window.open(target.href, '_blank', 'noopener');
   });
 
