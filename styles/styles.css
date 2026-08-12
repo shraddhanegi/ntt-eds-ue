@@ -26,6 +26,14 @@
   --brand-accent-secondary: #ffc400;
   --brand-border: #d9e2ec;
 
+  /* semantic theme tokens (overridden per body.theme-*) */
+  --brand-primary: var(--ntt-navy);
+  --brand-primary-dark: var(--ntt-navy-dark);
+  --brand-accent: var(--ntt-accent);
+  --brand-accent-secondary: #ffc400;
+  --brand-border: var(--ntt-border);
+  --link-on-dark-hover: rgb(255 255 255 / 80%);
+
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;

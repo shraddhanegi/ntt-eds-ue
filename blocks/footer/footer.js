@@ -1,5 +1,5 @@
-import { loadFragment, resolveFragmentPath } from '../fragment/fragment.js';
 import { getPageMetadataValue, getThemeFragmentName } from '../../scripts/theme-config.js';
+import { loadFragment, resolveFragmentPath } from '../fragment/fragment.js';
 
 /**
  * loads and decorates the footer

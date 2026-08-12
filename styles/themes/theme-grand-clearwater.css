@@ -1,0 +1,26 @@
+/*
+ * Theme — Grand Clearwater property
+ */
+
+body.theme-grand-clearwater {
+  --background-color: #fff;
+  --light-color: #f7f5f2;
+  --dark-color: #1a1a1a;
+  --text-color: #2e2e2e;
+  --text-muted-color: #6b6b6b;
+  --link-color: #0e3e46;
+  --link-hover-color: #0a2f35;
+  --link-on-dark-hover: #c5dde0;
+  --brand-primary: #0e3e46;
+  --brand-primary-dark: #0a2f35;
+  --brand-accent: #0e3e46;
+  --brand-accent-secondary: #d4af37;
+  --brand-border: #e0dcd4;
+  --ntt-navy: var(--brand-primary);
+  --ntt-navy-dark: var(--brand-primary-dark);
+  --ntt-accent: var(--brand-accent);
+  --ntt-border: var(--brand-border);
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --heading-font-family: roboto, roboto-fallback, sans-serif;
+  --display-font-family: roboto, roboto-fallback, sans-serif;
+}

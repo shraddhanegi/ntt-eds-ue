@@ -27,15 +27,19 @@
           "name": "theme",
           "label": "Theme",
           "valueType": "string",
-          "description": "Sets site-wide look and feel (typography, colors, nav/footer). Set on the master page; child pages inherit unless overridden.",
+          "description": "Sets site look-and-feel and automatically selects the matching header mega menu and nav fragment. Set on the master page; child pages inherit unless overridden.",
           "options": [
             {
-              "name": "Theme 1 — Corporate",
+              "name": "Corporate — Wyndham Hotels",
               "value": "theme-corporate"
             },
             {
-              "name": "Theme 2 — Brand",
-              "value": "theme-brand"
+              "name": "Grand Clearwater",
+              "value": "theme-grand-clearwater"
+            },
+            {
+              "name": "Rio Mar",
+              "value": "theme-riomar"
             }
           ]
         },

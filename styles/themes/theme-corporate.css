@@ -1,6 +1,5 @@
 /*
- * Theme 1 — Corporate (Wyndham Hotels corporate-style)
- * Deep navy header/footer, corporate blue accents, clean sans-serif typography.
+ * Theme — Corporate (Wyndham Hotels)
  */
 
 body.theme-corporate {
@@ -17,6 +16,10 @@ body.theme-corporate {
   --brand-accent: #06c;
   --brand-accent-secondary: #c5a572;
   --brand-border: #d9e2ec;
+  --ntt-navy: var(--brand-primary);
+  --ntt-navy-dark: var(--brand-primary-dark);
+  --ntt-accent: var(--brand-accent);
+  --ntt-border: var(--brand-border);
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
   --display-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;

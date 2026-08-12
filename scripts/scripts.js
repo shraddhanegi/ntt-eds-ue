@@ -144,8 +144,8 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
-  decorateTemplateAndTheme();
   initPageTheme(doc);
+  decorateTemplateAndTheme();
   await loadThemeCss();
   const main = doc.querySelector('main');
   const header = doc.querySelector('header');

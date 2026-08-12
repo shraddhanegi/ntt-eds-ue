@@ -3,15 +3,29 @@ import { getMetadata, readBlockConfig, toClassName } from './aem.js';
 export const DEFAULT_THEME = 'theme-corporate';
 
 export const THEME_DEFAULTS = {
-  'theme-corporate': { nav: 'nav', footer: 'footer' },
-  'theme-brand': { nav: 'nav-brand', footer: 'footer-brand' },
+  'theme-corporate': {
+    nav: 'nav-corporate',
+    footer: 'footer-corporate',
+    megaMenuStyle: 'mega-corporate',
+  },
+  'theme-grand-clearwater': {
+    nav: 'nav-grand-clearwater',
+    footer: 'footer-grand-clearwater',
+    megaMenuStyle: 'mega-grand-clearwater',
+  },
+  'theme-riomar': {
+    nav: 'nav-riomar',
+    footer: 'footer-riomar',
+    megaMenuStyle: 'mega-riomar',
+  },
 };
 
 const THEME_ALIASES = {
   'theme-corporate': 'theme-corporate',
-  'theme-brand': 'theme-brand',
+  'theme-grand-clearwater': 'theme-grand-clearwater',
+  'theme-riomar': 'theme-riomar',
   'theme-1-corporate': 'theme-corporate',
-  'theme-2-brand': 'theme-brand',
+  'theme-brand': 'theme-grand-clearwater',
 };
 
 /**
@@ -94,6 +108,27 @@ export function getPageTheme(doc = document) {
 }
 
 /**
+ * Resolve the mega menu layout class for the active theme.
+ * @param {Document} doc Document to query
+ * @returns {string}
+ */
+export function getThemeMegaMenuStyle(doc = document) {
+  const theme = getPageTheme(doc);
+  return THEME_DEFAULTS[theme].megaMenuStyle;
+}
+
+/**
+ * Resolve theme-specific fragment basename.
+ * @param {'nav'|'footer'} type Fragment type
+ * @param {Document} doc Document to query
+ * @returns {string}
+ */
+export function getThemeFragmentName(type, doc = document) {
+  const theme = getPageTheme(doc);
+  return THEME_DEFAULTS[theme][type];
+}
+
+/**
  * Apply template and theme classes from page metadata.
  * @param {Document} doc Document to decorate
  */
@@ -118,14 +153,4 @@ export function applyPageThemeClass(doc = document) {
 export function initPageTheme(doc = document) {
   extractMetadataFromMain(doc);
   applyPageThemeClass(doc);
-}
-
-/**
- * Resolve theme-specific fragment basename (nav, footer, nav-brand, etc.).
- * @param {'nav'|'footer'} type Fragment type
- * @returns {string}
- */
-export function getThemeFragmentName(type) {
-  const theme = getPageTheme();
-  return THEME_DEFAULTS[theme][type];
 }

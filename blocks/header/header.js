@@ -1,6 +1,6 @@
 import { loadCSS } from '../../scripts/aem.js';
+import { getPageMetadataValue, getThemeFragmentName, getThemeMegaMenuStyle } from '../../scripts/theme-config.js';
 import { loadFragment, resolveFragmentPath } from '../fragment/fragment.js';
-import { getPageMetadataValue, getThemeFragmentName } from '../../scripts/theme-config.js';
 
 /**
  * Mount decorated navigation markup inside the header block.
@@ -17,6 +17,7 @@ async function mountNavigation(block, fragment) {
   navWrapper.className = 'nav-wrapper';
 
   if (decoratedNav) {
+    decoratedNav.classList.add(getThemeMegaMenuStyle());
     navWrapper.append(decoratedNav);
     block.append(navWrapper);
     return;
@@ -25,7 +26,7 @@ async function mountNavigation(block, fragment) {
   // Legacy fragment format: three divs (brand, sections, tools)
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  nav.className = 'navigation';
+  nav.className = `navigation ${getThemeMegaMenuStyle()}`;
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
