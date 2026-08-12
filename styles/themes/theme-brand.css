@@ -1,0 +1,36 @@
+/*
+ * Theme 2 — Brand (Ramada sub-brand-style)
+ * Warmer hospitality palette, gold accents, serif display headings.
+ */
+
+body.theme-brand {
+  --background-color: #fff;
+  --light-color: #faf8f5;
+  --dark-color: #1a1a1a;
+  --text-color: #2e2e2e;
+  --text-muted-color: #6b6b6b;
+  --link-color: #036;
+  --link-hover-color: #024;
+  --link-on-dark-hover: #e8c872;
+  --brand-primary: #1e3264;
+  --brand-primary-dark: #152347;
+  --brand-accent: #036;
+  --brand-accent-secondary: #d4af37;
+  --brand-border: #e8e0d4;
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --heading-font-family: noto-serif, "Noto Serif", noto-serif-fallback, serif;
+  --display-font-family: noto-serif, "Noto Serif", noto-serif-fallback, serif;
+
+  /* slightly larger display headings for hospitality feel */
+  --heading-font-size-xxl: 58px;
+  --heading-font-size-xl: 46px;
+  --heading-font-size-l: 36px;
+}
+
+@media (width >= 900px) {
+  body.theme-brand {
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 38px;
+    --heading-font-size-l: 30px;
+  }
+}

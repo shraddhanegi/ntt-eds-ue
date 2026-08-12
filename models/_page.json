@@ -23,18 +23,35 @@
           "label": "Keywords"
         },
         {
+          "component": "select",
+          "name": "theme",
+          "label": "Theme",
+          "valueType": "string",
+          "description": "Sets site-wide look and feel (typography, colors, nav/footer). Set on the master page; child pages inherit unless overridden.",
+          "options": [
+            {
+              "name": "Theme 1 — Corporate",
+              "value": "theme-corporate"
+            },
+            {
+              "name": "Theme 2 — Brand",
+              "value": "theme-brand"
+            }
+          ]
+        },
+        {
           "component": "aem-content",
           "name": "nav",
           "label": "Navigation",
           "valueType": "string",
-          "description": "Page used as the site header navigation fragment. Defaults to /nav when empty."
+          "description": "Page used as the site header navigation fragment. Defaults to theme-specific nav when empty."
         },
         {
           "component": "aem-content",
           "name": "footer",
           "label": "Footer",
           "valueType": "string",
-          "description": "Page used as the site footer fragment. Defaults to /footer when empty."
+          "description": "Page used as the site footer fragment. Defaults to theme-specific footer when empty."
         }
       ]
     }

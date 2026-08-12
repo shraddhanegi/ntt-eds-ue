@@ -13,6 +13,7 @@ import {
 import decorateTitlesWithMargin from './title-with-margin.js';
 import decorateContentStackSections, { initContentStackSectionAuthoring } from './content-stack-section.js';
 import { decorateWhBlocks, loadWhBlocks } from './whydham/wh-block-loader.js';
+import { initPageTheme, getPageTheme } from './theme-config.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -46,6 +47,14 @@ export function moveInstrumentation(from, to) {
       .map(({ nodeName }) => nodeName)
       .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-')),
   );
+}
+
+/**
+ * Load theme-specific CSS token overrides based on page metadata.
+ */
+async function loadThemeCss() {
+  const themeClass = getPageTheme();
+  await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${themeClass}.css`);
 }
 
 /**
@@ -136,6 +145,8 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  initPageTheme(doc);
+  await loadThemeCss();
   const main = doc.querySelector('main');
   const header = doc.querySelector('header');
   if (header) decorateWhBlocks(header);

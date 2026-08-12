@@ -14,15 +14,15 @@ main > .section.hero-video-carousel-container > div {
 }
 
 .hero-video-carousel {
-  --hero-video-carousel-cta: #ffd100;
-  --hero-video-carousel-cta-hover: #f0c400;
+  --hero-video-carousel-cta: var(--brand-accent-secondary);
+  --hero-video-carousel-cta-hover: var(--brand-accent-secondary);
   --hero-video-carousel-segment: rgb(255 255 255 / 35%);
   --hero-video-carousel-segment-active: #fff;
 
   position: relative;
   overflow: hidden;
   min-height: 50vh;
-  background-color: var(--ntt-navy);
+  background-color: var(--brand-primary);
   color: var(--background-color);
 }
 

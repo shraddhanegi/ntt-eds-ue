@@ -1,5 +1,6 @@
-import { getMetadata, loadCSS } from '../../scripts/aem.js';
+import { loadCSS } from '../../scripts/aem.js';
 import { loadFragment, resolveFragmentPath } from '../fragment/fragment.js';
+import { getPageMetadataValue, getThemeFragmentName } from '../../scripts/theme-config.js';
 
 /**
  * Mount decorated navigation markup inside the header block.
@@ -42,8 +43,8 @@ async function mountNavigation(block, fragment) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  const navMeta = getMetadata('nav');
-  const navPath = await resolveFragmentPath(navMeta, 'nav');
+  const navMeta = getPageMetadataValue('nav');
+  const navPath = await resolveFragmentPath(navMeta, getThemeFragmentName('nav'));
   const fragment = await loadFragment(navPath);
 
   if (!fragment) {

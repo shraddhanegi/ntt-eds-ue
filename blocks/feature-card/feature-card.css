@@ -18,8 +18,8 @@
 
 .feature-card .feature-card-heading {
   margin: 0;
-  color: #2e404d;
-  font-family: noto-serif, "Noto Serif", "Noto Sans", "Noto Sans JP", noto-serif-fallback, serif, sans-serif;
+  color: var(--text-color);
+  font-family: var(--display-font-family);
   font-size: 2.5rem;
   font-weight: 400;
   line-height: 1.3;
@@ -32,8 +32,8 @@
 .feature-card .feature-card-description {
   margin: 64px 0 0;
   max-width: 800px;
-  color: #2e404d;
-  font-family: noto-sans, "Noto Sans", "Noto Sans JP", noto-sans-fallback, sans-serif;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
   font-size: 100%;
   line-height: 1.8;
 }
@@ -50,13 +50,13 @@
   padding: 0;
   border: 0;
   background: transparent;
-  font-family: noto-sans, "Noto Sans", "Noto Sans JP", noto-sans-fallback, sans-serif;
+  font-family: var(--body-font-family);
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  color: #0072bc;
+  color: var(--link-color);
 }
 
 .feature-card .feature-card-cta-text {
@@ -72,7 +72,7 @@
 
 .feature-card .feature-card-cta:hover,
 .feature-card .feature-card-cta:focus-visible {
-  color: #005aa3;
+  color: var(--link-hover-color);
   text-decoration: none;
 }
 

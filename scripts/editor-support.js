@@ -11,6 +11,7 @@ import { decorateRichtext } from './editor-support-rte.js';
 import decorateTitlesWithMargin from './title-with-margin.js';
 import decorateContentStackSections, { initContentStackSectionAuthoring } from './content-stack-section.js';
 import { decorateButtons, decorateMain } from './scripts.js';
+import { initPageTheme } from './theme-config.js';
 
 let promiseChanges$ = Promise.resolve();
 
@@ -44,6 +45,7 @@ async function applyChanges(event) {
       element.insertAdjacentElement('afterend', newMain);
       decorateMain(newMain);
       decorateRichtext(newMain);
+      initPageTheme(document);
       await loadSections(newMain);
       element.remove();
       newMain.style.display = null;

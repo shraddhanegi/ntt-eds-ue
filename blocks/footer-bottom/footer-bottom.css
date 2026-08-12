@@ -1,5 +1,5 @@
 .footer-bottom {
-  background-color: var(--ntt-navy-dark);
+  background-color: var(--brand-primary-dark);
   color: rgb(255 255 255 / 85%);
   font-size: var(--body-font-size-xs);
 }
