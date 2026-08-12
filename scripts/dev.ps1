@@ -7,7 +7,5 @@ if (-not (Test-Path "node_modules\@adobe\aem-cli")) {
 }
 
 Write-Host "Starting dev server at http://localhost:3000"
-Write-Host "Content proxy: https://main--ntt-eds-ue--vinitbodage.aem.page"
-Write-Host "Home page: http://localhost:3000/home"
 Write-Host "Draft pages: http://localhost:3000/drafts/en-us"
-npx @adobe/aem-cli up --no-open --forward-browser-logs --stop-other --url https://main--ntt-eds-ue--vinitbodage.aem.page
+npx @adobe/aem-cli up --no-open --forward-browser-logs --stop-other

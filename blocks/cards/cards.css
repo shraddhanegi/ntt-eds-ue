@@ -8,7 +8,7 @@
 }
 
 .cards > ul > li {
-  border: 1px solid var(--brand-border);
+  border: 1px solid var(--ntt-border);
   background-color: var(--background-color);
   border-radius: 4px;
   overflow: hidden;
@@ -27,7 +27,7 @@
 .cards .cards-card-body h3 {
   margin-top: 0;
   font-size: var(--heading-font-size-s);
-  color: var(--brand-primary);
+  color: var(--ntt-navy);
 }
 
 .cards .cards-card-body p {

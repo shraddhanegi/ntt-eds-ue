@@ -11,7 +11,7 @@
  */
 
 :root {
-  /* brand colors (semantic tokens — overridden per theme) */
+  /* NTT DATA brand colors */
   --background-color: #fff;
   --light-color: #f4f6f8;
   --dark-color: #1a1a1a;
@@ -19,12 +19,10 @@
   --text-muted-color: #5c6670;
   --link-color: #0072ce;
   --link-hover-color: #005aa3;
-  --link-on-dark-hover: #b8d9f5;
-  --brand-primary: #0b1f3a;
-  --brand-primary-dark: #071428;
-  --brand-accent: #0072ce;
-  --brand-accent-secondary: #ffc400;
-  --brand-border: #d9e2ec;
+  --ntt-navy: #0b1f3a;
+  --ntt-navy-dark: #071428;
+  --ntt-accent: #0072ce;
+  --ntt-border: #d9e2ec;
 
   /* semantic theme tokens (overridden per body.theme-*) */
   --brand-primary: var(--ntt-navy);
@@ -227,8 +225,8 @@ button.button:disabled {
 
 a.button.primary,
 button.button.primary {
-  border-color: var(--brand-accent);
-  background-color: var(--brand-accent);
+  border-color: var(--ntt-accent);
+  background-color: var(--ntt-accent);
   color: var(--background-color);
 }
 
@@ -353,7 +351,7 @@ main .section.highlight {
 }
 
 main .section.navy {
-  background-color: var(--brand-primary);
+  background-color: var(--ntt-navy);
   color: var(--background-color);
   margin: 0;
   padding: 56px 0;
@@ -371,7 +369,7 @@ main .section.navy a:any-link {
 }
 
 main .section.navy a:any-link:hover {
-  color: var(--link-on-dark-hover);
+  color: #b8d9f5;
 }
 
 /* content stack section — flexbox layout variants */

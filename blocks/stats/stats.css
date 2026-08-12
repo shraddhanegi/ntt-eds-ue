@@ -16,7 +16,7 @@
   font-size: var(--heading-font-size-xl);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--brand-accent);
+  color: var(--ntt-accent);
 }
 
 .stats .stats-label {

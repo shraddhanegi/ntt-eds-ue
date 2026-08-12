@@ -8,7 +8,7 @@
 }
 
 .tiles > ul > li {
-  border: 1px solid var(--brand-border);
+  border: 1px solid var(--ntt-border);
   border-radius: 4px;
   overflow: hidden;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -110,7 +110,7 @@
 }
 
 .tiles > ul > li.dark .tiles-tile-content :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--brand-primary);
+  color: var(--ntt-navy);
 }
 
 .tiles > ul > li.dark .tiles-tile-content p {
@@ -123,7 +123,7 @@
 }
 
 .tiles.tile-bg-blue {
-  background-color: var(--brand-primary);
+  background-color: var(--ntt-navy);
 }
 
 .tiles.tile-bg-white {
@@ -200,7 +200,7 @@
 
 .tiles.layout-compact .tiles-tile-content :is(h1, h2, h3, h4, h5, h6) {
   margin: 0 0 24px;
-  font-family: var(--display-font-family);
+  font-family: noto-serif, "Noto Serif", "Noto Sans", "Noto Sans JP", noto-serif-fallback, serif, sans-serif;
   font-size: clamp(2rem, 2.5vw, 3.2rem);
   font-weight: 400;
   line-height: 1.3;
