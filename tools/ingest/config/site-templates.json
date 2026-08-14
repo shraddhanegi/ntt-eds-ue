@@ -1,0 +1,25 @@
+{
+  "templates": {
+    "corporate": {
+      "label": "Corporate parent site",
+      "templateClass": "template-corporate",
+      "defaultTheme": "theme-corporate",
+      "megaMenuStyle": "mega-corporate",
+      "domainMapping": "default"
+    },
+    "wyndham-hospitality": {
+      "label": "Wyndham hotel franchise",
+      "templateClass": "template-wyndham",
+      "defaultTheme": "theme-grand-clearwater",
+      "megaMenuStyle": "mega-grand-clearwater",
+      "domainMapping": "wyndham"
+    },
+    "riomar": {
+      "label": "Riomar property franchise",
+      "templateClass": "template-riomar",
+      "defaultTheme": "theme-riomar",
+      "megaMenuStyle": "mega-riomar",
+      "domainMapping": "default"
+    }
+  }
+}

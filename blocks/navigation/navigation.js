@@ -1,4 +1,5 @@
 import { createOptimizedPicture, decorateIcons } from '../../scripts/aem.js';
+import { getThemeMegaMenuStyle } from '../../scripts/theme-config.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 const TOOL_STYLES = ['primary', 'globe', 'search', 'contact'];
@@ -277,8 +278,98 @@ function parseBlock(block) {
   };
 }
 
-function buildNavItem(item) {
+function buildMegaColumn(column) {
+  const col = document.createElement('div');
+  col.className = 'nav-mega-column';
+
+  if (column.title) {
+    const title = document.createElement('p');
+    title.className = 'nav-mega-column-title';
+    title.textContent = column.title;
+    col.append(title);
+  }
+
+  const list = document.createElement('ul');
+  list.className = 'nav-mega-column-links';
+  column.links.forEach((link) => {
+    const li = document.createElement('li');
+    li.append(buildLink(link.label, link.href, link.target, link.icon));
+    list.append(li);
+  });
+  col.append(list);
+  return col;
+}
+
+function buildMegaPanel(item, megaMenuStyle) {
+  const panel = document.createElement('div');
+  panel.className = 'nav-mega-panel';
+  panel.hidden = true;
+
+  const inner = document.createElement('div');
+  inner.className = 'nav-mega-panel-inner';
+
+  const grid = document.createElement('div');
+  grid.className = 'nav-mega-columns';
+  item.megaColumns.forEach((column) => {
+    grid.append(buildMegaColumn(column));
+  });
+  inner.append(grid);
+
+  if (megaMenuStyle === 'mega-corporate' && item.href && item.href !== '#') {
+    const featured = document.createElement('div');
+    featured.className = 'nav-mega-featured';
+    const featuredLink = buildLink(`Explore ${item.label}`, item.href, item.target, null);
+    featuredLink.classList.add('button', 'primary');
+    featured.append(featuredLink);
+    inner.append(featured);
+  }
+
+  panel.append(inner);
+  return panel;
+}
+
+function closeMegaItem(item) {
+  item.classList.remove('is-open');
+  const trigger = item.querySelector('.nav-mega-trigger');
+  const panel = item.querySelector('.nav-mega-panel');
+  trigger?.setAttribute('aria-expanded', 'false');
+  if (panel) panel.hidden = true;
+}
+
+function closeAllMegaPanels(nav, except) {
+  nav.querySelectorAll('.nav-item-has-mega.is-open').forEach((item) => {
+    if (item !== except) closeMegaItem(item);
+  });
+}
+
+function openMegaItem(item) {
+  closeAllMegaPanels(item.closest('nav'), item);
+  item.classList.add('is-open');
+  const trigger = item.querySelector('.nav-mega-trigger');
+  const panel = item.querySelector('.nav-mega-panel');
+  trigger?.setAttribute('aria-expanded', 'true');
+  if (panel) panel.hidden = false;
+}
+
+function buildNavItem(item, megaMenuStyle) {
   const li = document.createElement('li');
+
+  if (item.megaColumns?.length) {
+    li.classList.add('nav-item-has-mega');
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'nav-mega-trigger';
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-haspopup', 'true');
+    trigger.textContent = item.label;
+
+    const panel = buildMegaPanel(item, megaMenuStyle);
+    li.append(trigger, panel);
+    if (item.sourceRow) moveInstrumentation(item.sourceRow, li);
+    return li;
+  }
+
   const link = buildLink(item.label, item.href, item.target, item.icon);
   li.append(link);
   if (item.sourceRow) moveInstrumentation(item.sourceRow, li);
@@ -480,6 +571,84 @@ function toggleNavMenu(nav, hamburger) {
   }
 }
 
+function setupMegaMenuInteractions(nav) {
+  const mediaQuery = window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`);
+  const megaItems = [...nav.querySelectorAll('.nav-item-has-mega')];
+  if (!megaItems.length) return;
+
+  let closeTimer;
+
+  const scheduleClose = (item) => {
+    window.clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(() => {
+      if (!item.matches(':hover') && !item.querySelector('.nav-mega-panel:hover')) {
+        closeMegaItem(item);
+      }
+    }, 200);
+  };
+
+  megaItems.forEach((item) => {
+    const trigger = item.querySelector('.nav-mega-trigger');
+    const panel = item.querySelector('.nav-mega-panel');
+
+    trigger?.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (item.classList.contains('is-open')) {
+        closeMegaItem(item);
+        return;
+      }
+      openMegaItem(item);
+    });
+
+    item.addEventListener('mouseenter', () => {
+      if (!mediaQuery.matches) return;
+      window.clearTimeout(closeTimer);
+      openMegaItem(item);
+    });
+
+    item.addEventListener('mouseleave', () => {
+      if (!mediaQuery.matches) return;
+      scheduleClose(item);
+    });
+
+    panel?.addEventListener('mouseenter', () => {
+      window.clearTimeout(closeTimer);
+    });
+
+    panel?.addEventListener('mouseleave', () => {
+      if (!mediaQuery.matches) return;
+      scheduleClose(item);
+    });
+
+    panel?.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeMegaItem(item);
+        trigger?.focus();
+      }
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!mediaQuery.matches) return;
+    if (event.target.closest('.nav-item-has-mega')) return;
+    closeAllMegaPanels(nav);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeAllMegaPanels(nav);
+  });
+
+  const handleBreakpointChange = () => {
+    if (!mediaQuery.matches) closeAllMegaPanels(nav);
+  };
+
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener('change', handleBreakpointChange);
+  } else {
+    mediaQuery.addListener(handleBreakpointChange);
+  }
+}
+
 function setupNavInteractions(nav, hamburger) {
   const overlay = nav.querySelector('.nav-overlay');
   const drawer = nav.querySelector('.nav-drawer');
@@ -526,9 +695,10 @@ export default function decorate(block) {
     logo, logoLink, navItems, tools,
   } = parseBlock(block);
 
+  const megaMenuStyle = getThemeMegaMenuStyle();
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  nav.className = 'navigation';
+  nav.className = `navigation ${megaMenuStyle}`;
 
   const bar = document.createElement('div');
   bar.className = 'nav-bar';
@@ -581,7 +751,7 @@ export default function decorate(block) {
   const list = document.createElement('ul');
   navItems.forEach((item) => {
     if (!isContactNavItem(item, contactTool)) {
-      list.append(buildNavItem(item));
+      list.append(buildNavItem(item, megaMenuStyle));
     }
   });
   sections.append(list);
@@ -623,6 +793,7 @@ export default function decorate(block) {
 
   nav.append(bar, overlay, drawer);
   setupNavInteractions(nav, hamburger);
+  setupMegaMenuInteractions(nav);
 
   moveInstrumentation(block, nav);
   block.replaceChildren(nav);

@@ -4,6 +4,10 @@ coverage/*
 logs/*
 node_modules/*
 .env
+aem-content/
+*.zip
+drafts/ingest/
+*.log
 
 .cursor/
 

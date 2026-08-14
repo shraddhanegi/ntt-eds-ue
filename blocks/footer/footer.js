@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getPageMetadataValue, getThemeFragmentName } from '../../scripts/theme-config.js';
 import { loadFragment, resolveFragmentPath } from '../fragment/fragment.js';
 
 /**
@@ -6,8 +6,8 @@ import { loadFragment, resolveFragmentPath } from '../fragment/fragment.js';
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  const footerMeta = getMetadata('footer');
-  const footerPath = await resolveFragmentPath(footerMeta, 'footer');
+  const footerMeta = getPageMetadataValue('footer');
+  const footerPath = await resolveFragmentPath(footerMeta, getThemeFragmentName('footer'));
   const fragment = await loadFragment(footerPath);
 
   block.textContent = '';

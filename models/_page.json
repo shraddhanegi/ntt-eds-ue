@@ -23,18 +23,39 @@
           "label": "Keywords"
         },
         {
+          "component": "select",
+          "name": "theme",
+          "label": "Theme",
+          "valueType": "string",
+          "description": "Sets site look-and-feel and automatically selects the matching header mega menu and nav fragment. Set on the master page; child pages inherit unless overridden.",
+          "options": [
+            {
+              "name": "Corporate — Wyndham Hotels",
+              "value": "theme-corporate"
+            },
+            {
+              "name": "Grand Clearwater",
+              "value": "theme-grand-clearwater"
+            },
+            {
+              "name": "Rio Mar",
+              "value": "theme-riomar"
+            }
+          ]
+        },
+        {
           "component": "aem-content",
           "name": "nav",
           "label": "Navigation",
           "valueType": "string",
-          "description": "Page used as the site header navigation fragment. Defaults to /nav when empty."
+          "description": "Page used as the site header navigation fragment. Defaults to theme-specific nav when empty."
         },
         {
           "component": "aem-content",
           "name": "footer",
           "label": "Footer",
           "valueType": "string",
-          "description": "Page used as the site footer fragment. Defaults to /footer when empty."
+          "description": "Page used as the site footer fragment. Defaults to theme-specific footer when empty."
         }
       ]
     }

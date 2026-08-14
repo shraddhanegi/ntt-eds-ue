@@ -1,0 +1,26 @@
+/*
+ * Theme — Rio Mar property
+ */
+
+body.theme-riomar {
+  --background-color: #fff;
+  --light-color: #faf8f5;
+  --dark-color: #1a1a1a;
+  --text-color: #2a2a2a;
+  --text-muted-color: #666;
+  --link-color: #1e3264;
+  --link-hover-color: #152347;
+  --link-on-dark-hover: #e8c872;
+  --brand-primary: #1e3264;
+  --brand-primary-dark: #152347;
+  --brand-accent: #003366;
+  --brand-accent-secondary: #d4af37;
+  --brand-border: #e8e0d4;
+  --ntt-navy: var(--brand-primary);
+  --ntt-navy-dark: var(--brand-primary-dark);
+  --ntt-accent: var(--brand-accent);
+  --ntt-border: var(--brand-border);
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --heading-font-family: noto-serif, "Noto Serif", noto-serif-fallback, serif;
+  --display-font-family: noto-serif, "Noto Serif", noto-serif-fallback, serif;
+}

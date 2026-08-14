@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EDS URL Ingest</title>
+    <link rel="stylesheet" href="./eds-ingest.css">
+  </head>
+  <body>
+    <div class="eds-ingest">
+      <header class="eds-ingest-header">
+        <div>
+          <p class="eds-ingest-eyebrow">Tools &rsaquo; General</p>
+          <h1>EDS URL Ingest</h1>
+          <p class="eds-ingest-lead">
+            Convert an external website into AEM Edge Delivery content — no terminal required.
+            All 8 pipeline phases are supported.
+          </p>
+        </div>
+        <aside class="eds-ingest-phases" aria-label="Supported pipeline phases">
+          <h2>Pipeline phases</h2>
+          <ol id="phase-list"></ol>
+        </aside>
+      </header>
+
+      <main>
+        <form id="ingest-form" class="eds-ingest-form">
+          <section class="eds-ingest-panel">
+            <h2>1. Source &amp; destination</h2>
+            <div class="eds-ingest-grid">
+              <label class="eds-ingest-field eds-ingest-field-full">
+                <span>Website URL</span>
+                <input type="url" name="url" placeholder="https://www.example.com/" required>
+              </label>
+              <label class="eds-ingest-field">
+                <span>Destination</span>
+                <select name="target" required></select>
+              </label>
+              <label class="eds-ingest-field">
+                <span>Project name</span>
+                <input type="text" name="project" value="ntt-eds-ue">
+              </label>
+            </div>
+          </section>
+
+          <section class="eds-ingest-panel">
+            <h2>2. Franchise site <span class="eds-ingest-optional">optional</span></h2>
+            <div class="eds-ingest-grid">
+              <label class="eds-ingest-field">
+                <span>Existing franchise</span>
+                <select name="existingFranchise">
+                  <option value="">— New or manual —</option>
+                </select>
+              </label>
+              <label class="eds-ingest-field">
+                <span>Franchise slug</span>
+                <input type="text" name="franchise" placeholder="clearwater-beach">
+              </label>
+              <label class="eds-ingest-field">
+                <span>Site template</span>
+                <select name="siteTemplate">
+                  <option value="">— Auto —</option>
+                </select>
+              </label>
+              <label class="eds-ingest-field">
+                <span>Theme</span>
+                <select name="theme">
+                  <option value="">— Scrape from source —</option>
+                </select>
+              </label>
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="checkbox" name="initFranchiseOnly">
+                <span>Scaffold franchise only (no URL ingest)</span>
+              </label>
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="checkbox" name="generateTheme">
+                <span>Generate theme CSS even when a parent theme is selected</span>
+              </label>
+            </div>
+          </section>
+
+          <section class="eds-ingest-panel">
+            <h2>3. Multi-page discovery</h2>
+            <div class="eds-ingest-grid">
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="radio" name="discovery" value="none" checked>
+                <span>Seed page only</span>
+              </label>
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="radio" name="discovery" value="crawl">
+                <span>Crawl same-site links from HTML</span>
+              </label>
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="radio" name="discovery" value="sitemap">
+                <span>Discover pages from sitemap.xml</span>
+              </label>
+              <label class="eds-ingest-field">
+                <span>Max additional pages</span>
+                <input type="number" name="maxPages" min="1" max="50" value="5">
+              </label>
+              <label class="eds-ingest-field eds-ingest-field-full">
+                <span>Sitemap URL override</span>
+                <input type="url" name="sitemapUrl" placeholder="https://www.example.com/sitemap.xml">
+              </label>
+            </div>
+          </section>
+
+          <section class="eds-ingest-panel">
+            <h2>4. Validation &amp; quality</h2>
+            <div class="eds-ingest-grid">
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="checkbox" name="validate" checked>
+                <span>Validate EDS output against source and auto-fix gaps</span>
+              </label>
+              <label class="eds-ingest-field">
+                <span>Pass threshold (0–1)</span>
+                <input type="number" name="validateThreshold" min="0.5" max="1" step="0.05" value="0.8">
+              </label>
+              <label class="eds-ingest-field">
+                <span>Max fix passes</span>
+                <input type="number" name="validateMaxPasses" min="1" max="5" value="3">
+              </label>
+            </div>
+          </section>
+
+          <section class="eds-ingest-panel">
+            <h2>5. Export &amp; publish</h2>
+            <div class="eds-ingest-grid">
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="checkbox" name="exportMetadata" checked>
+                <span>Export metadata-seo.csv / .json</span>
+              </label>
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="checkbox" name="packageAem">
+                <span>Create AEM content ZIP package</span>
+              </label>
+              <label class="eds-ingest-field eds-ingest-check">
+                <input type="checkbox" name="pushAem">
+                <span>Push package to AEM Cloud (requires .env credentials)</span>
+              </label>
+            </div>
+          </section>
+
+          <div class="eds-ingest-actions">
+            <button type="submit" class="eds-ingest-primary" id="submit-btn">Start ingest</button>
+            <button type="button" class="eds-ingest-secondary" id="reset-btn">Reset form</button>
+          </div>
+        </form>
+
+        <section class="eds-ingest-panel eds-ingest-status" id="status-panel" hidden>
+          <div class="eds-ingest-status-head">
+            <h2>Progress</h2>
+            <span class="eds-ingest-badge" id="status-badge">Running</span>
+          </div>
+          <pre id="log-output" class="eds-ingest-log" aria-live="polite"></pre>
+          <div id="result-summary" class="eds-ingest-result" hidden></div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./eds-ingest.js"></script>
+  </body>
+</html>

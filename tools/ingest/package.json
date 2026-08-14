@@ -1,0 +1,58 @@
+{
+  "name": "@ntt/eds-url-ingest",
+  "version": "1.0.0",
+  "description": "EDS URL ingest CLI and author UI — scrape external sites into AEM Edge Delivery content (8 phases)",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "NTT Data",
+  "keywords": [
+    "aem",
+    "edge-delivery",
+    "helix",
+    "ingest",
+    "franklin",
+    "universal-editor",
+    "document-authoring"
+  ],
+  "bin": {
+    "eds-ingest": "./cli.mjs",
+    "eds-ingest-ui": "./api-server.mjs"
+  },
+  "main": "./lib/ingest-run.mjs",
+  "exports": {
+    ".": "./lib/ingest-run.mjs",
+    "./cli": "./cli.mjs",
+    "./ui": "./api-server.mjs"
+  },
+  "files": [
+    "adapters",
+    "config",
+    "lib",
+    "mappings",
+    "pipeline",
+    "ui",
+    "cli.mjs",
+    "api-server.mjs",
+    "README.md",
+    "INSTALL.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.13.1",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "commander": "^15.0.0",
+    "dotenv": "^17.4.2",
+    "linkedom": "^0.18.13",
+    "puppeteer": "^25.6.0",
+    "sharp": "^0.35.3"
+  },
+  "optionalDependencies": {
+    "@adobe/aem-import-helper": "^1.6.0"
+  },
+  "scripts": {
+    "start:ui": "node api-server.mjs",
+    "ingest": "node cli.mjs"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "projectName": "ntt-eds-ue",
+  "publicPrefix": "/drafts/ingest",
+  "outputRoot": "drafts/ingest",
+  "sharepoint": {
+    "tenantId": "${AZURE_TENANT_ID}",
+    "clientId": "${AZURE_CLIENT_ID}",
+    "clientSecret": "${AZURE_CLIENT_SECRET}",
+    "siteId": "${SP_SITE_ID}",
+    "driveId": "${SP_DRIVE_ID}",
+    "rootFolder": "ntt-eds-ue",
+    "publicPrefix": "/ntt-eds-ue"
+  },
+  "aem": {
+    "outputRoot": "aem-content/ntt-eds-ue",
+    "publicPrefix": "/ntt-eds-ue",
+    "packageZip": "aem-content/ntt-eds-ue-package.zip",
+    "importToken": "${AEM_IMPORT_TOKEN}",
+    "importTarget": "${AEM_TARGET}"
+  }
+}

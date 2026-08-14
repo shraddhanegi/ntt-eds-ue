@@ -1,4 +1,5 @@
-import { getMetadata, loadCSS } from '../../scripts/aem.js';
+import { loadCSS } from '../../scripts/aem.js';
+import { getPageMetadataValue, getThemeFragmentName, getThemeMegaMenuStyle } from '../../scripts/theme-config.js';
 import { loadFragment, resolveFragmentPath } from '../fragment/fragment.js';
 
 /**
@@ -16,6 +17,7 @@ async function mountNavigation(block, fragment) {
   navWrapper.className = 'nav-wrapper';
 
   if (decoratedNav) {
+    decoratedNav.classList.add(getThemeMegaMenuStyle());
     navWrapper.append(decoratedNav);
     block.append(navWrapper);
     return;
@@ -24,7 +26,7 @@ async function mountNavigation(block, fragment) {
   // Legacy fragment format: three divs (brand, sections, tools)
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  nav.className = 'navigation';
+  nav.className = `navigation ${getThemeMegaMenuStyle()}`;
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
@@ -42,8 +44,8 @@ async function mountNavigation(block, fragment) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  const navMeta = getMetadata('nav');
-  const navPath = await resolveFragmentPath(navMeta, 'nav');
+  const navMeta = getPageMetadataValue('nav');
+  const navPath = await resolveFragmentPath(navMeta, getThemeFragmentName('nav'));
   const fragment = await loadFragment(navPath);
 
   if (!fragment) {

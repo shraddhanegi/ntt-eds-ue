@@ -24,9 +24,18 @@
   --ntt-accent: #0072ce;
   --ntt-border: #d9e2ec;
 
+  /* semantic theme tokens (overridden per body.theme-*) */
+  --brand-primary: var(--ntt-navy);
+  --brand-primary-dark: var(--ntt-navy-dark);
+  --brand-accent: var(--ntt-accent);
+  --brand-accent-secondary: #ffc400;
+  --brand-border: var(--ntt-border);
+  --link-on-dark-hover: rgb(255 255 255 / 80%);
+
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --display-font-family: noto-serif, "Noto Serif", noto-serif-fallback, serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -196,7 +205,7 @@ button.button {
   max-width: 100%;
   margin: 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
+  border-radius: var(--brand-button-radius, 2.4em);
   padding: 0.5em 1.2em;
   font: inherit;
   font-weight: 500;

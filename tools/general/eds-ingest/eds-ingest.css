@@ -1,0 +1,251 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f8fb;
+  --panel: #fff;
+  --text: #1b1f24;
+  --muted: #5c6570;
+  --border: #d8dee8;
+  --accent: #0265dc;
+  --accent-dark: #0054b6;
+  --success: #12805c;
+  --warn: #b14c00;
+  --error: #d31510;
+  --radius: 12px;
+  --shadow: 0 8px 24px rgb(15 23 42 / 8%);
+  font-family: "Adobe Clean", "Segoe UI", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 240px);
+  color: var(--text);
+}
+
+.eds-ingest {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+}
+
+.eds-ingest-header {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.eds-ingest-eyebrow {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.eds-ingest-header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.eds-ingest-lead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+.eds-ingest-phases {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+
+.eds-ingest-phases h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+.eds-ingest-phases ol {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.eds-ingest-phases li + li {
+  margin-top: 6px;
+}
+
+.eds-ingest-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.eds-ingest-panel h2 {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+}
+
+.eds-ingest-optional {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+.eds-ingest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.eds-ingest-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+.eds-ingest-field-full {
+  grid-column: 1 / -1;
+}
+
+.eds-ingest-field span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.eds-ingest-field input,
+.eds-ingest-field select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+}
+
+.eds-ingest-field input:focus,
+.eds-ingest-field select:focus {
+  outline: 2px solid rgb(2 101 220 / 25%);
+  border-color: var(--accent);
+}
+
+.eds-ingest-check {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.eds-ingest-check input {
+  width: auto;
+}
+
+.eds-ingest-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.eds-ingest-primary,
+.eds-ingest-secondary {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.eds-ingest-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.eds-ingest-primary:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.eds-ingest-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.eds-ingest-secondary {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.eds-ingest-status-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.eds-ingest-badge {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #e8f1ff;
+  color: var(--accent);
+}
+
+.eds-ingest-badge.is-success {
+  background: #e6f5ef;
+  color: var(--success);
+}
+
+.eds-ingest-badge.is-error {
+  background: #fdecea;
+  color: var(--error);
+}
+
+.eds-ingest-log {
+  margin: 0;
+  max-height: 320px;
+  overflow: auto;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  font: 0.8125rem/1.45 ui-monospace, "Cascadia Code", monospace;
+  white-space: pre-wrap;
+}
+
+.eds-ingest-result {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.eds-ingest-result a {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .eds-ingest-header,
+  .eds-ingest-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,29 @@
+/*
+ * Auto-generated theme from URL ingest pipeline
+ */
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700");
+
+body.theme-grand-clearwater {
+  --background-color: #ffffff;
+  --light-color: #f4f6f8;
+  --dark-color: #1a1a1a;
+  --text-color: #282829;
+  --text-muted-color: #666;
+  --link-color: #3d717f;
+  --link-hover-color: #34606c;
+  --link-on-dark-hover: rgb(255 255 255 / 80%);
+  --brand-primary: #3d717f;
+  --brand-primary-dark: #315a66;
+  --brand-accent: #3d717f;
+  --brand-accent-secondary: #d9b941;
+  --brand-border: #d9e2ec;
+  --brand-footer-bg: #38535d;
+  --brand-button-radius: 4px;
+  --ntt-navy: var(--brand-primary);
+  --ntt-navy-dark: var(--brand-primary-dark);
+  --ntt-accent: var(--brand-accent);
+  --ntt-border: var(--brand-border);
+  --body-font-family: "Proxima Nova", "sans-serif";
+  --heading-font-family: Montserrat, "sans-serif";
+}
